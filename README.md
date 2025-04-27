@@ -122,22 +122,14 @@ python manage.py runserver -->
    pip install -r requirements.txt
    ```
 
-4. **Create a `.env` file at the project root and add your settings:**
-
-   ```env
-   SECRET_KEY=your-secret-key
-   DEBUG=True
-   ALLOWED_HOSTS=127.0.0.1,localhost
-   ```
-
-5. **Apply migrations and run the server:**
+4. **Apply migrations and run the server:**
 
    ```bash
    python manage.py migrate
    python manage.py runserver
    ```
 
-6. **Open your browser and navigate to:**
+5. **Open your browser and navigate to:**
 
    ```
    http://127.0.0.1:8000/
