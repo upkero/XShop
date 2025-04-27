@@ -147,6 +147,6 @@ python manage.py runserver -->
 ## 📄 License
 
 This project is licensed under the MIT License.  
-See [LICENSE.md](LICENSE.md) for more details.
+See [LICENSE](LICENSE) for more details.
 
 ---
