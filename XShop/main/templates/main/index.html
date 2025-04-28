@@ -1,0 +1,100 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block main %}
+<div class="welcome">
+	<div class="welcome__container">
+		<div class="welcome__row">
+			<div class="welcome__column">
+				<div class="welcome__title">
+					<p>Welcome to XShop</p>
+				</div>
+				<div class="welcome__text">
+					<p>In our world, filled with stress and everyday worries, finding comfort and peace is a real feat. It is here, in a corner among green fields and meadows, that we want to tell you about a miracle that brings joy and harmony to life - tea made from medicinal</p>
+				</div>
+			</div>
+			<div class="welcome__column">
+				<div class="welcome__image"><img src="{% static 'img/home/marijuana.png' %}"></div>
+			</div>
+		</div>			
+	</div>
+</div>
+<div class="benefits">
+	<div class="benefits__conainer">
+		<div class="benefits__title">
+			<p>Benefits of Herbal Tea</p>
+		</div>
+		<div class="benefits__row">
+			<div class="benefits__column">
+				<div class="benefits__column_title">
+					<p>Alcohol Replacement</p>
+				</div>
+				<div class="benefits__column_image"><img src="{% static 'img/home/alcohol.jpg' %}"></div>
+				<div class="benefits__column_text">
+					<p>Tea made from medicinal herbs becomes an ideal alternative to alcohol. It not only brings pleasure in the form of a rich aroma and taste, but also gives warmth and comfort without having any negative effects on the body.</p>
+				</div>
+			</div>
+			<div class="benefits__column">
+				<div class="benefits__column_title">
+					<p>Relaxing Effect</p>
+				</div>
+				<div class="benefits__column_image"><img src="{% static 'img/home/relax.jpg' %}"></div>
+				<div class="benefits__column_text">
+					<p>A drink made from medicinal herbs has unique properties that can relax the body and calm the mind. After a busy day, a cup of herbal tea will be a real salvation, immersing you in a feeling of calm and harmony.</p>
+				</div>
+			</div>
+			<div class="benefits__column">
+				<div class="benefits__column_title">
+					<p>Filling Life with Bright Colors</p>
+				</div>
+				<div class="benefits__column_image"><img src="{% static 'img/home/bright.jpg' %}"></div>
+				<div class="benefits__column_text">
+					<p>Drinking tea from medicinal herbs means enriching your life with useful substances and giving it a bright taste. This drink makes us more conscious, cheerful and ready to accept the joys of every moment.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="mustbuy">
+	<div class="mustbuy__container">
+		<div class="mustbuy__row">
+			<div class="mustbuy__column">
+				<div class="mustbuy__column_image"><img src="{% static 'img/home/sugar.png' %}"></div>
+			</div>
+			<div class="mustbuy__column">
+				<div class="mustbuy__column_text">
+					<p>Go ahead, discover the world of herbal teas, enjoy their drinks and let this drink turn your home into a cozy corner where every sip brings joy and well-being. Welcome to our tea corner, where caring for your well-being becomes an art!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="products">
+	<div class="products__container">
+		<div class="products__row">
+			{% for product in products %}
+				<div class="products__over-column">
+					<div class="products__column_strength">{{ product.strength }}</div>
+					<button class="add-to-favorites" data-product-id="0"><img src="{% static 'img/icons/star-line-icon.png' %}"  alt="Favorite Star" class="favorite-icon"></button>
+					
+					<a href="#" class="products__column">
+						<div class="products__column_image">
+							<img src="{% static product.image %}" alt="{{ product.name }}">
+						</div>
+						<div class="products__column_text">{{ product.name }}</div>
+						<div class="products__column_price"><p class="products__column_price_old-price"></p> ${{ product.price }}</div>
+					</a>
+					<button class="add-to-cart" data-product-id="0">Add to Cart</button> <!-- Кнопка добавления в корзину -->			
+				</div>
+			{% endfor %}
+		</div>
+		<a href="#">
+		<div class="products__btn">
+			Go to Products
+		</div>
+		</a>
+	</div>
+</div>
+{% endblock main %}

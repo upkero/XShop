@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block main %}
+<div class="contact">
+	<div class="contact__container">
+		<h2>Contact Us</h2>
+		<p>If you have any questions or just want to chat about tea, feel free to reach out to us!</p>
+
+		<div class="contact__info">
+			<div class="contact__item">
+				<h3>Address</h3>
+				<p>123 Tea Street, Tea Town, TeaLand</p>
+			</div>
+
+			<div class="contact__item">
+				<h3>Phone</h3>
+				<p>+1 (800) 123-4567</p>
+			</div>
+
+			<div class="contact__item">
+				<h3>Email</h3>
+				<p>contact@xshop.com</p>
+			</div>
+
+		</div>
+
+		<h3 class="contact__sendus">Send us a message</h3>
+
+		<form class="contact__form">
+			<label for="name">Your Name</label>
+			<input type="text" id="name" name="name" placeholder="Your Name" required>
+
+			<label for="email">Your Email</label>
+			<input type="email" id="email" name="email" placeholder="Your Email" required>
+
+			<label for="message">Your Message</label>
+			<textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+			<button type="submit" class="contact__btn">Send Message</button>
+		</form>
+	</div>
+</div>
+{% endblock main %}

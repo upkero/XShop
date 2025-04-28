@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Delivery Information{% endblock title %}
+
+{% block main %}
+<div class="delivery">
+	<div class="delivery__container">
+		<h2>Delivery Information</h2>
+		<p>We know – nobody likes waiting. But good tea? It's worth the pause.</p>
+
+		<div class="delivery__block">
+			<h3>📦 Shipping Methods</h3>
+			<ul>
+				<li><strong>Standard Delivery:</strong> 1-2 business days</li>
+				<li><strong>Express Delivery:</strong> 24 hours</li>
+				<li><strong>Local Pickup:</strong> Available at selected points</li>
+			</ul>
+		</div>
+
+		<div class="delivery__block">
+			<h3>🌍 Shipping Zones</h3>
+			<p>We currently ship across {{YOUR_COUNTRY}} and a few international spots. If you're on Mars, we're working on it 🚀</p>
+		</div>
+
+		<div class="delivery__block">
+			<h3>💸 Shipping Costs</h3>
+			<ul>
+				<li>Free delivery for orders over $50</li>
+				<li>Flat rate: $4.99 for smaller orders</li>
+			</ul>
+		</div>
+
+		<div class="delivery__block">
+			<h3>⚠️ Important Information</h3>
+			<p>Make sure your shipping info is correct — our tea isn’t trained to find its way on its own (yet).</p>
+		</div>
+	</div>
+</div>
+{% endblock main %}

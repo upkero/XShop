@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}XShop{% endblock title %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="icon" type="image/png" href="{% static 'favicon/favicon.ico' %}">
+</head>
+<body>
+	<div class="header">
+		<div class="header__container">
+			<div class="header__title">
+				<a href="{% url 'main:index' %}">XShop</a>
+			</div>
+			<div class="header__nav">
+				<ul>
+					<li><a href="{% url 'main:index' %}">Home</a></li>
+					<div  class="dropdown">
+						<li><a href="#">Products</a></li>
+						<ul class="dropdown-menu">
+							<li><a href="#/*category-link*/" class="dropdown-item">Black Tea</a></li>
+							<li><a href="#/*category-link*/" class="dropdown-item">White</a></li>
+							<li><a href="#/*category-link*/" class="dropdown-item">Yellow tea</a></li>
+							<li><a href="#/*category-link*/" class="dropdown-item">Sugar</a></li>
+							<li><a href="#/*category-link*/" class="dropdown-item">Special teas</a></li>
+							<li><a href="#/*category-link*/" class="dropdown-item">Other</a></li>
+						</ul>
+					</div>
+					<li><a href="{% url 'main:about' %}">About Us</a></li>
+					<li><a href="{% url 'main:contact' %}">Contact Us</a></li>
+				</ul>
+			</div>
+			<div class="header__icons">
+				<ul>
+					{% comment %} <!-- {{типа if в аккаунте}} --> {% endcomment %}
+					<div class="dropdown">
+						<li><a href="#"><img src="{% static 'img/icons/gear.png' %}"></a></li>
+						<ul class="dropdown-menu">
+							<li><a href="#" class="dropdown-item">Edit Profile</a></li>
+							<li><a href="#" class="dropdown-item">Change Password</a></li>
+							<li><a href="#" class="dropdown-item">Log Out</a></li>
+						</ul>
+					</div>
+					<li><a href="#"><img src="{% static 'img/icons/cart.png' %}"></a></li>
+					<li><a href="#"><img src="{% static 'img/icons/profile.png' %}"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		{% block main %}
+
+		{% endblock main %}
+	</div>
+	<div class="footer">
+		<div class="footer__container">
+			<div class="footer__row">
+				<div class="footer__column">
+					<div class="footer__column_title">
+						<p><a href="{% url 'main:index' %}">XShop</a></p>
+					</div>
+					<div class="footer__column_text">
+						<p>We choose calmness and peace-loving. No stress! Love us - love the world.</p>
+					</div>
+					<div class="footer__column_follow">
+						<p>Follow Us</p>
+					</div>
+					<div class="footer__column_icons">
+						<img src="{% static 'img/icons/Instagram_icon.png' %}">
+						<img src="{% static 'img/icons/Telegram_logo.png' %}">
+						<img src="{% static 'img/icons/Facebook_icon.png' %}">
+						<img src="{% static 'img/icons/X_icon.png' %}">
+					</div>
+				</div>
+				<div class="footer__column">
+					<div class="footer__column_nav">
+						<ul>
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li><a href="#">Products</a></li>
+							<li><a href="{% url 'main:about' %}">About Us</a></li>
+							<li><a href="{% url 'main:contact' %}">Contact Us</a></li>
+							<li><a href="#">Profile</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer__column">
+					<div class="footer__column_poicy">
+						<ul>
+							<li><a href="{% url 'main:delivery' %}">Delivery Information</a></li>
+							<li><a href="{% url 'main:policy' %}">Privacy Policy</a></li>
+							<li><a href="{% url 'main:terms' %}">Terms & Condition</a></li>
+							<li><a href="{% url 'main:order_and_return' %}">Order & Return</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer__search">
+                    <input type="search" class="footer__search-input" placeholder="Search something...">
+                    <button type="submit" class="footer__search-btn">Search</button>
+                </div>
+			</div>
+		</div>
+	</div>
+<script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery/jquery-3.7.0.min.js' %}"></script>
+<script src="{% static 'js/jquery-events.js' %}"></script>
+<script src="{% static 'js/jquery-ajax.js' %}"></script>
+</body>
+</html>
