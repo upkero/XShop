@@ -1,0 +1,114 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Products{% endblock title %}
+
+{% block main %}
+<div class="catalog">
+	<div class="catalog__container">
+			
+		<!-- Верхняя панель: фильтры + сортировка -->
+		<div class="catalog__top-bar">
+			<button class="catalog__filter-btn">Filters</button>
+		
+			<div class="catalog__sort">
+				<label for="sort-select">Sort by:</label>
+				<select id="sort-select" class="catalog__sort-select">
+				<option value="default">Default</option>
+				<option value="strength-asc">Strength ↑</option>
+				<option value="strength-desc">Strength ↓</option>
+				<option value="price-asc">Price ↑</option>
+				<option value="price-desc">Price ↓</option>
+				</select>
+			</div>
+		</div>
+	
+		<!-- Фильтры -->
+		<div class="catalog__filters hidden">
+			<label class="custom-checkbox">
+				<input type="checkbox" name="on-sale">
+				<span class="checkmark"></span>
+				On Sale
+			</label>
+			<label class="custom-checkbox">
+				<input type="checkbox" name="favorites">
+				<span class="checkmark"></span>
+				Favorites
+			</label>
+			<label class="custom-checkbox">
+				<input type="checkbox" name="new">
+				<span class="checkmark"></span>
+				New
+			</label>
+		</div>
+		{% comment %} 	
+		<div class="catalog__category">
+			Currently viewing: <strong>Black Tea</strong>
+		</div>
+	 	{% endcomment %}
+		<div class="catalog__grid">
+
+			{% for product in products %}
+				{% if forloop.first or forloop.counter0|divisibleby:4 %}
+					<div class="products__row">
+				{% endif %}
+
+				<div class="products__over-column">
+					<div class="products__column_strength">{{ product.strength }}</div>
+					<button class="add-to-favorites" data-product-id="0"><img src="{% static 'img/icons/star-line-icon.png' %}"  alt="Favorite Star" class="favorite-icon"></button>
+					
+					<a href="{% url "catalog:product" %}" class="products__column">
+						<div class="products__column_image">
+							<img src="{% static product.image %}" alt="{{ product.name }}">
+						</div>
+						<div class="products__column_text">{{ product.name }}</div>
+						<div class="products__column_price"><p class="products__column_price_old-price"></p> ${{ product.price }}</div>
+					</a>
+					<button class="add-to-cart" data-product-id="0">Add to Cart</button> <!-- Кнопка добавления в корзину -->			
+				</div>
+
+				{% if forloop.counter|divisibleby:4 or forloop.last %}
+					</div>
+				{% endif %}
+			{% endfor %}
+
+		</div>
+	
+		<!-- Пагинация -->
+		<nav class="catalog__pagination" aria-label="Page navigation">
+			<ul class="catalog__pagination-list">
+			<div class="catalog__pagination-wrapper">
+				<li class="catalog__page-item disabled">
+				<a class="catalog__page-link">Previous</a>
+				</li>
+				<li class="catalog__page-item active">
+				<a class="catalog__page-link" href="#">1</a>
+				</li>
+				<li class="catalog__page-item">
+				<a class="catalog__page-link" href="#">2</a>
+				</li>
+				<li class="catalog__page-item">
+				<a class="catalog__page-link" href="#">3</a>
+				</li>
+				<li class="catalog__page-item">
+				<a class="catalog__page-link" href="#">Next</a>
+				</li>
+			</div>
+			</ul>
+		</nav>
+	<!-- {% for page in page_obj.paginator.page_range %}
+	{% if page == page_obj.number %}
+	<li class="catalog__page-item active"><a class="catalog__page-link">{{ page }}</a></li>
+	{% else %}
+	<li class="catalog__page-item"><a class="catalog__page-link" href="?page={{ page }}">{{ page }}</a></li>
+	{% endif %}
+	{% endfor %} -->
+
+	</div>
+  </div>		  
+<script>
+document.querySelector('.catalog__filter-btn').addEventListener('click', () => {
+	document.querySelector('.catalog__filters').classList.toggle('hidden');
+  });
+</script>
+{% endblock main %}

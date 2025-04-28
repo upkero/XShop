@@ -79,7 +79,7 @@
 					<div class="products__column_strength">{{ product.strength }}</div>
 					<button class="add-to-favorites" data-product-id="0"><img src="{% static 'img/icons/star-line-icon.png' %}"  alt="Favorite Star" class="favorite-icon"></button>
 					
-					<a href="#" class="products__column">
+					<a href="{% url "catalog:product" %}" class="products__column">
 						<div class="products__column_image">
 							<img src="{% static product.image %}" alt="{{ product.name }}">
 						</div>
@@ -90,7 +90,7 @@
 				</div>
 			{% endfor %}
 		</div>
-		<a href="#">
+		<a href="{% url "catalog:index" %}">
 		<div class="products__btn">
 			Go to Products
 		</div>

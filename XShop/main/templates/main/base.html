@@ -18,14 +18,14 @@
 				<ul>
 					<li><a href="{% url 'main:index' %}">Home</a></li>
 					<div  class="dropdown">
-						<li><a href="#">Products</a></li>
+						<li><a href="{% url "catalog:index" %}">Products</a></li>
 						<ul class="dropdown-menu">
-							<li><a href="#/*category-link*/" class="dropdown-item">Black Tea</a></li>
-							<li><a href="#/*category-link*/" class="dropdown-item">White</a></li>
-							<li><a href="#/*category-link*/" class="dropdown-item">Yellow tea</a></li>
-							<li><a href="#/*category-link*/" class="dropdown-item">Sugar</a></li>
-							<li><a href="#/*category-link*/" class="dropdown-item">Special teas</a></li>
-							<li><a href="#/*category-link*/" class="dropdown-item">Other</a></li>
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Black Tea</a></li>
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">White</a></li>
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Yellow tea</a></li>
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Sugar</a></li>
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Special teas</a></li>
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Other</a></li>
 						</ul>
 					</div>
 					<li><a href="{% url 'main:about' %}">About Us</a></li>
@@ -78,7 +78,7 @@
 					<div class="footer__column_nav">
 						<ul>
 							<li><a href="{% url 'main:index' %}">Home</a></li>
-							<li><a href="#">Products</a></li>
+							<li><a href="{% url 'catalog:index' %}">Products</a></li>
 							<li><a href="{% url 'main:about' %}">About Us</a></li>
 							<li><a href="{% url 'main:contact' %}">Contact Us</a></li>
 							<li><a href="#">Profile</a></li>
