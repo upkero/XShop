@@ -1,0 +1,322 @@
+[
+    {
+        "model": "goods.products",
+        "pk": 1,
+        "fields": {
+            "name": "Mountain Green Tea",
+            "slug": "mountain-green-tea",
+            "description": "A refreshing green tea picked from high mountain plantations, delivering a crisp and clean flavor profile with a hint of sweetness.",
+            "image": "",
+            "strength": 4,
+            "price": "9.99",
+            "discount": "0.10",
+            "quantity": 50,
+            "category": 4,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 2,
+        "fields": {
+            "name": "Spring Jade Green Tea",
+            "slug": "spring-jade-green-tea",
+            "description": "Hand-picked in early spring, this tea offers a vibrant, grassy taste with notes of honeydew melon and fresh herbs.",
+            "image": "",
+            "strength": 3,
+            "price": "14.50",
+            "discount": "0.00",
+            "quantity": 40,
+            "category": 4,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 3,
+        "fields": {
+            "name": "Classic Black Tea",
+            "slug": "classic-black-tea",
+            "description": "A strong black tea known for its rich maltiness and smooth body, perfect for a bold morning start.",
+            "image": "",
+            "strength": 7,
+            "price": "7.50",
+            "discount": "0.05",
+            "quantity": 70,
+            "category": 5,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 4,
+        "fields": {
+            "name": "Royal Assam Black Tea",
+            "slug": "royal-assam-black-tea",
+            "description": "Deep, full-bodied black tea with a brisk character, sourced from the lush gardens of Assam.",
+            "image": "",
+            "strength": 8,
+            "price": "11.20",
+            "discount": "0.00",
+            "quantity": 60,
+            "category": 5,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 5,
+        "fields": {
+            "name": "Silver Needle White Tea",
+            "slug": "silver-needle-white-tea",
+            "description": "Elegant white tea crafted from tender buds, offering a subtle sweetness and light floral aroma.",
+            "image": "",
+            "strength": 2,
+            "price": "16.00",
+            "discount": "0.00",
+            "quantity": 30,
+            "category": 6,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 6,
+        "fields": {
+            "name": "White Peony Tea",
+            "slug": "white-peony-tea",
+            "description": "A premium blend of young tea leaves and buds producing a mellow, sweet brew with fruity notes.",
+            "image": "",
+            "strength": 3,
+            "price": "12.99",
+            "discount": "0.05",
+            "quantity": 35,
+            "category": 6,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 7,
+        "fields": {
+            "name": "Herbal Relax Blend",
+            "slug": "herbal-relax-blend",
+            "description": "A soothing blend of chamomile, lavender, and lemon balm to help you unwind naturally after a long day.",
+            "image": "",
+            "strength": 1,
+            "price": "8.25",
+            "discount": "0.00",
+            "quantity": 45,
+            "category": 7,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 8,
+        "fields": {
+            "name": "Berry Infusion",
+            "slug": "berry-infusion",
+            "description": "A vivid herbal blend rich in raspberry, hibiscus, and elderberry, creating a fruity and slightly tangy cup.",
+            "image": "",
+            "strength": 2,
+            "price": "10.00",
+            "discount": "0.15",
+            "quantity": 20,
+            "category": 7,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 9,
+        "fields": {
+            "name": "Chamomile Dream",
+            "slug": "chamomile-dream",
+            "description": "Soft chamomile blossoms crafted into a gentle, honey-sweet brew to promote restfulness and calm.",
+            "image": "",
+            "strength": 1,
+            "price": "7.99",
+            "discount": "0.00",
+            "quantity": 25,
+            "category": 7,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 10,
+        "fields": {
+            "name": "Jasmine Green Tea",
+            "slug": "jasmine-green-tea",
+            "description": "Green tea leaves naturally scented with fresh jasmine blossoms, offering an enchanting aroma and delicate taste.",
+            "image": "",
+            "strength": 5,
+            "price": "11.00",
+            "discount": "0.05",
+            "quantity": 30,
+            "category": 4,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 11,
+        "fields": {
+            "name": "Porcelain Teacup Set",
+            "slug": "porcelain-teacup-set",
+            "description": "Elegant white porcelain teacup set designed for sophisticated tea ceremonies and special occasions.",
+            "image": "",
+            "strength": 0,
+            "price": "24.99",
+            "discount": "0.20",
+            "quantity": 15,
+            "category": 8,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 12,
+        "fields": {
+            "name": "Glass Teapot with Infuser",
+            "slug": "glass-teapot-with-infuser",
+            "description": "Durable glass teapot equipped with a stainless steel infuser, perfect for steeping loose-leaf teas.",
+            "image": "",
+            "strength": 0,
+            "price": "29.99",
+            "discount": "0.10",
+            "quantity": 18,
+            "category": 8,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 13,
+        "fields": {
+            "name": "Travel Tea Tumbler",
+            "slug": "travel-tea-tumbler",
+            "description": "A modern, insulated tumbler that keeps your tea hot or cold for hours, ideal for tea lovers on the move.",
+            "image": "",
+            "strength": 0,
+            "price": "18.50",
+            "discount": "0.10",
+            "quantity": 10,
+            "category": 8,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 14,
+        "fields": {
+            "name": "Organic Green Energy",
+            "slug": "organic-green-energy",
+            "description": "An energizing green tea blend packed with antioxidants and a naturally revitalizing flavor.",
+            "image": "",
+            "strength": 4,
+            "price": "13.80",
+            "discount": "0.00",
+            "quantity": 50,
+            "category": 4,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 15,
+        "fields": {
+            "name": "Darjeeling First Flush",
+            "slug": "darjeeling-first-flush",
+            "description": "Known as the champagne of teas, Darjeeling offers a unique muscatel flavor with floral undertones.",
+            "image": "",
+            "strength": 6,
+            "price": "17.90",
+            "discount": "0.05",
+            "quantity": 40,
+            "category": 5,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 16,
+        "fields": {
+            "name": "Moroccan Mint Tea",
+            "slug": "moroccan-mint-tea",
+            "description": "Traditional green tea blended with vibrant spearmint, a refreshing and cooling brew.",
+            "image": "",
+            "strength": 3,
+            "price": "9.70",
+            "discount": "0.00",
+            "quantity": 60,
+            "category": 4,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 17,
+        "fields": {
+            "name": "Lemongrass Herbal Fusion",
+            "slug": "lemongrass-herbal-fusion",
+            "description": "Bright and citrusy herbal infusion blending lemongrass with peppermint and ginger.",
+            "image": "",
+            "strength": 2,
+            "price": "9.25",
+            "discount": "0.00",
+            "quantity": 35,
+            "category": 7,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 18,
+        "fields": {
+            "name": "Rose White Tea",
+            "slug": "rose-white-tea",
+            "description": "White tea blended with rose petals for a light, aromatic cup with a floral finish.",
+            "image": "",
+            "strength": 2,
+            "price": "14.00",
+            "discount": "0.10",
+            "quantity": 28,
+            "category": 6,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 19,
+        "fields": {
+            "name": "Traditional Pu-erh Tea",
+            "slug": "traditional-pu-erh-tea",
+            "description": "Earthy, rich, and complex aged black tea from Yunnan province, known for its depth and body.",
+            "image": "",
+            "strength": 9,
+            "price": "15.50",
+            "discount": "0.00",
+            "quantity": 22,
+            "category": 5,
+            "is_active": true
+        }
+    },
+    {
+        "model": "goods.products",
+        "pk": 20,
+        "fields": {
+            "name": "Wooden Tea Storage Box",
+            "slug": "wooden-tea-storage-box",
+            "description": "Beautiful wooden box for organizing your favorite loose leaf teas and accessories.",
+            "image": "",
+            "strength": 0,
+            "price": "34.50",
+            "discount": "0.15",
+            "quantity": 12,
+            "category": 8,
+            "is_active": true
+        }
+    }
+]

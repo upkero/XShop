@@ -20,12 +20,9 @@
 					<div  class="dropdown">
 						<li><a href="{% url "catalog:index" %}">Products</a></li>
 						<ul class="dropdown-menu">
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Black Tea</a></li>
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">White</a></li>
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Yellow tea</a></li>
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Sugar</a></li>
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Special teas</a></li>
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">Other</a></li>
+							{% for category in categories %}
+							<li><a href="{% url "catalog:index" %}" class="dropdown-item">{{ category.name }}</a></li>
+							{% endfor %}
 						</ul>
 					</div>
 					<li><a href="{% url 'main:about' %}">About Us</a></li>

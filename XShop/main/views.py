@@ -2,15 +2,20 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import context
 
+from goods.models import Categories, Products
+import random
+
 
 def index(request):
+    categories = Categories.objects.filter(is_active=True)
+
+    products = list(Products.objects.filter(is_active=True))
+    random.shuffle(products)
+    recommended_products = products[:4]
+    
     context = {
-        'products':[
-            {'image': 'img/goods/1.png', 'name': 'Green Tea', 'strength': 2, 'price': 15.00},
-            {'image': 'img/goods/2.png', 'name': 'Black Tea', 'strength': 9, 'price': 10.00},
-            {'image': 'img/goods/3.png', 'name': 'White Tea', 'strength': 5, 'price': 20.00},
-            {'image': 'img/goods/4.png', 'name': 'Jasmine Tea', 'strength': 6, 'price': 56.00},
-        ]
+        'categories': categories,
+        'recommended_products': recommended_products,
     }
     return render(request, 'main/index.html', context)
 
