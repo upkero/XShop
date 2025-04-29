@@ -6,15 +6,28 @@
 {% block main %}
 <div class="itemview">
 	<div class="itemview__card">
-		<div class="itemview__id">#ID: {{ product.id }}</div>
+		<div class="itemview__id">#ID: {{ product.display_id }}</div>
 		<div class="itemview__main">
 			<div class="itemview__image">
-				<img src="{% static product.image %}" alt="{{ product.name }}">
+				{% if product.image %}
+					<img src="{{ product.image.url }}" alt="{{ product.name }}">
+				{% else %}
+					<img src="{% static "img/no found.png" %}" alt="Not Found">
+				{% endif %}
 			</div>
 			<div class="itemview__info">
 				<h1 class="itemview__title">{{ product.name }}</h1>
-				<p class="itemview__price">${{ product.price }}</p>
-				<p class="itemview__strength">Strength: <strong>{{ product.strength }}</strong></p>
+					<div class="itemview__price">
+						{% if product.discount %}
+							<p class="itemview__old-price">
+								${{ product.price }}
+							</p>
+						{% endif %}
+						${{ product.sell_price }}
+					</div>
+				{% if product.strength %}
+					<p class="itemview__strength">Strength: <strong>{{ product.strength }}</strong></p>
+				{% endif %}
 				<p class="itemview__desc">{{ product.description }}</p>
 				<div class="itemview__actions">
 					<button class="itemview__cartbtn">Add to Cart</button>

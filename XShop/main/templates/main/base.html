@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 {% load static %}
+{% load goods_tags %}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -20,8 +21,9 @@
 					<div  class="dropdown">
 						<li><a href="{% url "catalog:index" %}">Products</a></li>
 						<ul class="dropdown-menu">
+							{% tag_categories as categories%}
 							{% for category in categories %}
-							<li><a href="{% url "catalog:index" %}" class="dropdown-item">{{ category.name }}</a></li>
+								<li><a href="{% url "catalog:index" %}" class="dropdown-item">{{ category.name }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>

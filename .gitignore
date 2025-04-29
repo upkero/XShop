@@ -12,11 +12,12 @@ ENV/
 # Django
 .env
 /staticfiles/
-/media/
+media/
 *.log
 *.pot
 *.pyc
 local_settings.py
+src/
 
 # VSCode
 .vscode/

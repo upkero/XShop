@@ -76,12 +76,18 @@
 		<div class="products__row">
 			{% for product in recommended_products %}
 				<div class="products__over-column">
-					<div class="products__column_strength">{{ product.strength }}</div>
+					{% if product.strength %}
+						<div class="products__column_strength">{{ product.strength }}</div>
+					{% endif %}
 					<button class="add-to-favorites" data-product-id="0"><img src="{% static 'img/icons/star-line-icon.png' %}"  alt="Favorite Star" class="favorite-icon"></button>
 					
 					<a href="{% url "catalog:product" %}" class="products__column">
 						<div class="products__column_image">
-							<img src="{% static product.image %}" alt="{{ product.name }}">
+							{% if product.image %}
+								<img src="{{ product.image.url }}" alt="{{ product.name }}">
+							{% else %}
+								<img src="{% static "img/no found.png" %}" alt="Not Found">
+							{% endif %}
 						</div>
 						<div class="products__column_text">{{ product.name }}</div>
 						<div class="products__column_price">
@@ -89,10 +95,8 @@
 								<p class="products__column_price_old-price">
 									${{ product.price }}
 								</p>
-								${{ product.get_discounted_price }}
-							{% else %}
-								${{ product.price }}
 							{% endif %}
+							${{ product.sell_price }}
 						</div>
 					</a>
 					<button class="add-to-cart" data-product-id="0">Add to Cart</button> <!-- Кнопка добавления в корзину -->			
