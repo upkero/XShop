@@ -14,8 +14,11 @@ def catalog(request):
     return render(request, 'goods/catalog.html', context)
 
 
-def product(request):
+def product(request, product_id):
+    product = Products.objects.get(id=product_id)
+    
     context = {
-        'product': Products.objects.filter(id=11)[0]
+        'product' : product,
     }
+    
     return render(request, 'goods/product.html', context)
