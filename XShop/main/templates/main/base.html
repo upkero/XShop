@@ -23,7 +23,7 @@
 						<ul class="dropdown-menu">
 							{% tag_categories as categories%}
 							{% for category in categories %}
-								<li><a href="{% url "catalog:index" %}" class="dropdown-item">{{ category.name }}</a></li>
+								<li><a href="{% url "catalog:index" category.slug %}" class="dropdown-item">{{ category.name }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>

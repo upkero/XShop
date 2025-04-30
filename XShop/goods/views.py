@@ -1,11 +1,13 @@
-from django.shortcuts import render
-from django.template import context
+from django.shortcuts import render, get_object_or_404
 
 from goods.models import Products
 
 
-def catalog(request):
-    products = Products.objects.filter(is_active=True)
+def catalog(request, category_slug=False):
+    if category_slug:
+        products = get_object_or_404(Products.objects.filter(is_active=True, category__slug=category_slug))
+    else:
+        products = Products.objects.filter(is_active=True)
     
     context = {
         'products': products,
