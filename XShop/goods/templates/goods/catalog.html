@@ -93,11 +93,7 @@
 				<li class="catalog__page-item {% if not products.has_previous %}disabled{% endif %}">
 				<a class="catalog__page-link" href="
 				{% if products.has_previous %}
-					{% if slug_url %}
-						{% url "catalog:index_slug_page" slug_url products.previous_page_number %}
-					{% else %}
-						{% url "catalog:index_page" products.previous_page_number %}
-					{% endif %}
+					?page={{products.previous_page_number}}
 				{% else %}
 					#
 				{% endif %}
@@ -106,22 +102,14 @@
 				{% for page in products.paginator.page_range %}
 					{% if page >= products.number|add:-2 and page <= products.number|add:2 %}
 						<li class="catalog__page-item {% if products.number == page %} active{% endif %}">
-							{% if slug_url %}
-								<a class="catalog__page-link" href="{% url "catalog:index_slug_page" slug_url page %}">{{ page }}</a>
-							{% else %}
-								<a class="catalog__page-link" href="{% url "catalog:index_page" page %}">{{ page }}</a>
-							{% endif %}
+							<a class="catalog__page-link" href="?page={{page}}">{{ page }}</a>
 						</li>
 					{% endif %}
 				{% endfor %}
 				<li class="catalog__page-item {% if not products.has_next %}disabled{% endif %}">
 					<a class="catalog__page-link" href="
 					{% if products.has_next %}
-						{% if slug_url %}
-							{% url "catalog:index_slug_page" slug_url products.next_page_number %}
-						{% else %}
-							{% url "catalog:index_page" products.next_page_number %}
-						{% endif %}
+						?page={{products.next_page_number}}
 					{% else %}
 						#
 					{% endif %}
