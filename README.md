@@ -20,12 +20,12 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 
 - ✅ **Start Project**
 - 🔄 **Catalog** *(in progress)*
+- ✅ **Categories of Products**
+- ⬜ **Customer Reviews System**
 - ⬜ **Users (Registration, Login, Profile)**
 - ⬜ **Cart Management**
 - ⬜ **Order System**
 - ⬜ **Favorites System**
-- ⬜ **Customer Reviews System**
-- ⬜ **Categories of Products**
 - ⬜ **Promo Codes Support**
 - ⬜ **Payment System Integration**
 - ⬜ **Receipt Sending System**
