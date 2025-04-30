@@ -81,7 +81,7 @@
 					{% endif %}
 					<button class="add-to-favorites" data-product-id="0"><img src="{% static 'img/icons/star-line-icon.png' %}"  alt="Favorite Star" class="favorite-icon"></button>
 					
-					<a href="{% url "catalog:product" product.id %}" class="products__column">
+					<a href="{% url "catalog:product" product.slug %}" class="products__column">
 						<div class="products__column_image">
 							{% if product.image %}
 								<img src="{{ product.image.url }}" alt="{{ product.name }}">

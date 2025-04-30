@@ -14,8 +14,8 @@ def catalog(request):
     return render(request, 'goods/catalog.html', context)
 
 
-def product(request, product_id):
-    product = Products.objects.filter(id=product_id, is_active=True).first()
+def product(request, product_slug):
+    product = Products.objects.filter(slug=product_slug, is_active=True).first()
     
     context = {
         'product' : product,
