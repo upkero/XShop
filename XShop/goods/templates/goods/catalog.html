@@ -15,11 +15,11 @@
 			<div class="catalog__sort">
 				<label for="sort-select">Sort by:</label>
 				<select id="sort-select" class="catalog__sort-select">
-				<option name="order_by" value="default">Default</option>
-				<option name="order_by" value="-strength">Strength ↑</option>
-				<option name="order_by" value="strength">Strength ↓</option>
-				<option name="order_by" value="-price">Price ↑</option>
-				<option name="order_by" value="price">Price ↓</option>
+				<option value="default" {% if request.GET.order_by == 'default' or not request.GET.order_by %}selected{% endif %}>Default</option>
+				<option value="strength" {% if request.GET.order_by == 'strength' %}selected{% endif %}>Strength ↑</option>
+				<option value="-strength" {% if request.GET.order_by == '-strength' %}selected{% endif %}>Strength ↓</option>
+				<option value="price" {% if request.GET.order_by == 'price' %}selected{% endif %}>Price ↑</option>
+				<option value="-price" {% if request.GET.order_by == '-price' %}selected{% endif %}>Price ↓</option>
 				</select>
 			</div>
 		</div>
@@ -135,6 +135,15 @@
 <script>
 document.querySelector('.catalog__filter-btn').addEventListener('click', () => {
 	document.querySelector('.catalog__filters').classList.toggle('hidden');
-  });
+});
+
+
+document.getElementById('sort-select').addEventListener('change', function () {
+	const value = this.value;
+	const url = new URL(window.location.href);
+	url.searchParams.set('order_by', value);
+	url.searchParams.set('page', 1);
+	window.location.href = url.toString();
+});
 </script>
 {% endblock main %}
