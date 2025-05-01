@@ -27,7 +27,7 @@
 		<!-- Фильтры -->
 		<form action="
 		{% if slug_url %}
-			{% url "catalog:index" slug_url %}
+			{% url "catalog:index_slug" slug_url %}
 		{% else %}
 			{% url "catalog:index" %}
 		{% endif %}

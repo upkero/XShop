@@ -18,7 +18,7 @@ def catalog(request, category_slug=False):
     
     
     if category_slug:
-        products = get_list_or_404(Products.objects.filter(is_active=True, category__slug=category_slug))
+        products = Products.objects.filter(is_active=True, category__slug=category_slug)
     else:
         products = Products.objects.filter(is_active=True)
     
