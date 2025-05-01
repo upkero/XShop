@@ -21,11 +21,11 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 - ✅ **Start Project**
 - 🔄 **Catalog** *(in progress)*
 - ✅ **Categories of Products**
-- ⬜ **Customer Reviews System**
 - ⬜ **Users (Registration, Login, Profile)**
+- ⬜ **Customer Reviews System**
+- ⬜ **Favorites System**
 - ⬜ **Cart Management**
 - ⬜ **Order System**
-- ⬜ **Favorites System**
 - ⬜ **Promo Codes Support**
 - ⬜ **Payment System Integration**
 - ⬜ **Receipt Sending System**
@@ -39,7 +39,7 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 
 - **Backend**: 🐍 **Python**, 🔥 **Django**
 - **Frontend**: 🌐 **HTML5**, 🎨 **CSS3**
-- **Database**: 📦 **SQLite** (can switch to PostgreSQL or MySQL)
+- **Database**: 📦 **PostgreSQL**
 - **Caching (Future)**: 🔑 **Redis**
 - **Version Control**: 🛠️ **Git**
 

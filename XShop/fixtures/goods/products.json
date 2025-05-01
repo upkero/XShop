@@ -9,10 +9,11 @@
             "image": "goods_images/9.png",
             "strength": 4,
             "price": "9.99",
-            "discount": "10.00",
+            "discount": "0.00",
             "quantity": 50,
             "category": 4,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -28,7 +29,8 @@
             "discount": "10.00",
             "quantity": 40,
             "category": 4,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -44,7 +46,8 @@
             "discount": "10.00",
             "quantity": 70,
             "category": 5,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -60,7 +63,8 @@
             "discount": "10.00",
             "quantity": 60,
             "category": 5,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -76,7 +80,8 @@
             "discount": "10.00",
             "quantity": 30,
             "category": 6,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -92,7 +97,8 @@
             "discount": "10.00",
             "quantity": 35,
             "category": 6,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -108,7 +114,8 @@
             "discount": "10.00",
             "quantity": 45,
             "category": 7,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -121,10 +128,11 @@
             "image": "goods_images/2.png",
             "strength": 2,
             "price": "10.00",
-            "discount": "10.00",
+            "discount": "0.00",
             "quantity": 20,
             "category": 7,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -140,7 +148,8 @@
             "discount": "10.00",
             "quantity": 25,
             "category": 7,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -156,7 +165,8 @@
             "discount": "10.00",
             "quantity": 30,
             "category": 4,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -172,7 +182,8 @@
             "discount": "10.00",
             "quantity": 15,
             "category": 8,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -188,7 +199,8 @@
             "discount": "10.00",
             "quantity": 18,
             "category": 8,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -201,10 +213,11 @@
             "image": "goods_images/10_KSPuCoJ.png",
             "strength": 0,
             "price": "18.50",
-            "discount": "10.00",
+            "discount": "0.00",
             "quantity": 10,
             "category": 8,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -220,7 +233,8 @@
             "discount": "10.00",
             "quantity": 50,
             "category": 4,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -236,7 +250,8 @@
             "discount": "10.00",
             "quantity": 40,
             "category": 5,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -252,7 +267,8 @@
             "discount": "10.00",
             "quantity": 60,
             "category": 4,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -268,7 +284,8 @@
             "discount": "10.00",
             "quantity": 35,
             "category": 7,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -284,7 +301,8 @@
             "discount": "10.00",
             "quantity": 28,
             "category": 6,
-            "is_active": true
+            "is_active": true,
+            "is_new": true
         }
     },
     {
@@ -300,7 +318,8 @@
             "discount": "10.00",
             "quantity": 22,
             "category": 5,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     },
     {
@@ -316,7 +335,8 @@
             "discount": "10.00",
             "quantity": 12,
             "category": 8,
-            "is_active": true
+            "is_active": true,
+            "is_new": false
         }
     }
 ]
