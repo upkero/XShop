@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock title %}
+
+{% block main %}
+<div class="profile-edit-container">
+	<div class="profile-card profile-card--wide">
+		<h2 class="profile-title">Edit Profile</h2>
+
+		<form>
+			<div class="profile-group">
+				<label for="username">Username</label>
+				<input type="text" id="username" class="profile-input" value="johndoe" placeholder="Enter your username">
+			</div>
+
+			<div class="profile-group">
+				<label for="firstName">First Name</label>
+				<input type="text" id="firstName" class="profile-input" value="John" placeholder="Enter your first name">
+			</div>
+
+			<div class="profile-group">
+				<label for="lastName">Last Name</label>
+				<input type="text" id="lastName" class="profile-input" value="Doe" placeholder="Enter your last name">
+			</div>
+
+			<div class="profile-group">
+				<label for="email">Email</label>
+				<input type="email" id="email" class="profile-input" value="johndoe@example.com" placeholder="Enter your email">
+			</div>
+
+			<button type="submit" class="profile-btn">Save Changes</button>
+		</form>
+
+		<div class="profile-links">
+			<a href="{% url 'user:profile' %}" class="profile-back-link">Back to Profile</a>
+		</div>
+	</div>
+</div>
+{% endblock main %}

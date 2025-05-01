@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Forgot Password{% endblock title %}
+
+{% block main %}
+<div class="profile-edit-container">
+	<div class="profile-card profile-card--wide">
+		<h2 class="profile-title">Forgot Password</h2>
+
+		<form>  
+			<div class="auth-group">
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" placeholder="Your email address" required>
+			</div>
+
+			<button type="submit" class="profile-btn">Send Reset Link</button>
+		</form>
+
+		<div class="profile-links">
+			<a href="{% url 'user:login' %}" class="profile-back-link">Back to Sign In</a>
+		</div>
+	</div>
+</div>
+{% endblock main %}

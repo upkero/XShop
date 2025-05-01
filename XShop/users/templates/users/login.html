@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign In{% endblock title %}
+
+{% block main %}
+<div class="auth-container">
+	<div class="auth-card">
+		<h2 class="auth-title">Sign In</h2>
+		<form method="post" action="{% url 'user:login' %}">
+			<div class="auth-group">
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" placeholder="Enter your username" required>
+			</div>
+
+			<div class="auth-group">
+				<label for="password">Password</label>
+				<div class="password-wrapper">
+					<input type="password" id="password" name="password" placeholder="Enter your password">
+					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
+				</div>
+			</div>
+			<button type="submit" class="auth-btn">Sign In</button>
+		</form>
+		<div class="auth-links">
+			<a href="{% url 'user:forgotpass' %}" ref="#">Forgot password?</a> | <a href="{% url 'user:registration' %}">Create an account</a>
+		</div>
+		<hr class="auth-separator">
+		<div class="auth-social">
+			<p>Or sign in with:</p>
+			<a href="#" class="auth-social-btn">
+				<img src="{% static 'img/icons/google.svg' %}" alt="Google" width="16" height="16">
+				Google
+			</a>
+			<a href="#" class="auth-social-btn">
+				<img src="{% static 'img/icons/facebook.svg' %}" alt="Facebook" width="16" height="16">
+				Facebook
+			</a>
+			<a href="#" class="auth-social-btn">
+				<img src="{% static 'img/icons/github.svg' %}" alt="GitHub" width="16" height="16">
+				GitHub
+			</a>
+		</div>
+	</div>
+</div>
+<script>
+	function togglePassword(el) {
+		const input = el.previousElementSibling;
+		if (input.type === "password") {
+			input.type = "text";
+			el.textContent = "🙈";
+		} else {
+			input.type = "password";
+			el.textContent = "🙉";
+		}
+	}
+</script>
+
+{% endblock main %}

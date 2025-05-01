@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block main %}
+<div class="auth-container">
+    <div class="auth-card auth-card--wide">
+        <h2 class="auth-title">Sign Up</h2>
+        <form method="post" action="{% url 'user:registration' %}" class="auth-form">
+            <div class="auth-form-grid">
+                <div class="auth-group">
+                    <label for="first_name">First Name*</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+                </div>
+                <div class="auth-group">
+                    <label for="last_name">Last Name*</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+                </div>
+                <div class="auth-group">
+                    <label for="username">Username*</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                </div>
+                <div class="auth-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" placeholder="Your email address" required>
+                </div>
+                    <div class="auth-group">
+                        <label for="password1">Password*</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password1" name="password1" placeholder="Enter a password">
+                            <span class="toggle-password" onclick="togglePassword(this)">🙉</span>
+                        </div>
+                    </div>
+                <div class="auth-group">
+                        <label for="password2">Confirm Password*</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password2" name="password2" placeholder="Repeat your password">
+                            <span class="toggle-password" onclick="togglePassword(this)">🙉</span>
+                        </div>
+                    </div>
+            </div>
+
+            <button type="submit" class="auth-btn">Register</button>
+        </form>
+
+        <div class="auth-links">
+            Already have an account? <a href="{% url 'user:login' %}">Sign In</a>
+        </div>
+    </div>
+</div>
+<script>
+  function togglePassword(el) {
+    const input = el.previousElementSibling;
+    if (input.type === "password") {
+      input.type = "text";
+      el.textContent = "🙈";
+    } else {
+      input.type = "password";
+      el.textContent = "🙉";
+    }
+  }
+</script>
+{% endblock main %}

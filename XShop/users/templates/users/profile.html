@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block main %}
+<div class="profile-container">
+    <!-- PROFILE FORM -->
+    <div class="profile-left-column">
+        <div class="profile-card">
+            <h2 class="profile-title">Your Profile</h2>
+            <form>
+                <div class="avatar-group">
+                    <img src="{% static 'img/baseavatar.png' %}" alt="Avatar" class="avatar-img">
+                    <input type="file" id="avatar" class="avatar-input" accept="image/*">
+                    <label for="avatar" class="profile-file-btn">Change Avatar</label>
+                </div>
+            </form>
+            <div class="profile-userinfo">
+                <p class="profile-username">John Doe</p>
+                <p class="profile-useremail">johndoe@example.com</p>
+            </div>
+        </div>
+
+        <div class="discount-progress-card">
+            <p class="discount-progress-text">2 more orders to get 10% discount!</p>
+            <div class="discount-bar">
+                <div class="discount-bar-fill" style="width: 70%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER HISTORY -->
+    <div class="profile-right-column">
+        <div class="order-history-card">
+            <h3 class="order-history-title">Order History</h3>
+            <div class="order-history">
+
+            <details class="order-item" open>
+                <summary>Order #256 — Sep 09, 2023 | Status: <strong>Processing</strong></summary>
+                <div class="order-details">
+                    <table class="order-table">
+                        <thead>
+                            <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#">White tea and sugar</a></td>
+                                <td>1</td><td>$255.00</td><td>$255.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="order-total">Total: $255.00</p>
+                </div>
+            </details>
+
+            <details class="order-item">
+                <summary>Order #248 — Aug 01, 2023 | Status: <strong>Completed</strong></summary>
+                <div class="order-details">
+                    <table class="order-table">
+                        <thead>
+                            <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#">Black tea</a></td>
+                                <td>2</td><td>$30.00</td><td>$60.00</td>
+                            </tr>
+                    </tbody>
+                    </table>
+                    <p class="order-total">Total: $60.00</p>
+                </div>
+            </details>
+            </div>
+        </div>
+    </div>
+    <!-- FULL-WIDTH BOTTOM BLOCK -->
+    <div class="profile-fullwidth-card">
+        <h3 class="profile-fullwidth-title">Settings & Actions</h3>
+        <p class="profile-fullwidth-text">Here you can access additional actions or settings related to your account.</p>
+        <a href="{% url 'user:editprofile' %}" class="profile-fullwidth-btn">Edit Profile</a>
+        <a href="{% url 'user:changepass' %}" class="profile-fullwidth-btn">Change Password</a>
+        <a href="{% url 'user:logout' %}" class="profile-fullwidth-btn">Log Out</a>
+        <a href="#" class="profile-fullwidth-btn profile-fullwidth-btn--danger">Delete Account</a>
+    </div>
+</div>
+{% endblock main %}

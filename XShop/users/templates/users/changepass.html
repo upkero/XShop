@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Change Password{% endblock title %}
+
+{% block main %}
+<div class="profile-edit-container">
+	<div class="profile-card profile-card--wide">
+		<h2 class="profile-title">Change Password</h2>
+
+		<form>
+			<div class="profile-group">
+				<label for="current-password">Current Password</label>
+				<div class="password-wrapper">
+					<input type="password" id="current-password" class="profile-input" placeholder="Enter your current password">
+					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
+				</div>
+			</div>
+			<div class="profile-group">
+				<label for="new-password">New Password</label>
+				<div class="password-wrapper">
+					<input type="password" id="new-password" class="profile-input" placeholder="Enter your new password">
+					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
+				</div>
+			</div>
+			<div class="profile-group">
+				<label for="confirm-password">Confirm New Password</label>
+				<div class="password-wrapper">
+					<input type="password" id="confirm-password" class="profile-input" placeholder="Confirm your new password">
+					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
+				</div>
+			</div>
+
+			<button type="submit" class="profile-btn">Update Password</button>
+		</form>
+
+		<div class="profile-links">
+			<a href="{% url 'user:profile' %}" class="profile-back-link">Back to Profile</a>
+		</div>
+	</div>
+</div>
+<script>
+	function togglePassword(el) {
+		const input = el.previousElementSibling;
+		if (input.type === "password") {
+			input.type = "text";
+			el.textContent = "🙈";
+		} else {
+			input.type = "password";
+			el.textContent = "🙉";
+		}
+	}
+</script>
+{% endblock main %}

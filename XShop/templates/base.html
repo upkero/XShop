@@ -35,15 +35,15 @@
 				<ul>
 					{% comment %} <!-- {{типа if в аккаунте}} --> {% endcomment %}
 					<div class="dropdown">
-						<li><a href="#"><img src="{% static 'img/icons/gear.png' %}"></a></li>
+						<li><a href="{% url "user:profile" %}"><img src="{% static 'img/icons/gear.png' %}"></a></li>
 						<ul class="dropdown-menu">
-							<li><a href="#" class="dropdown-item">Edit Profile</a></li>
-							<li><a href="#" class="dropdown-item">Change Password</a></li>
-							<li><a href="#" class="dropdown-item">Log Out</a></li>
+							<li><a href="{% url "user:editprofile" %}" class="dropdown-item">Edit Profile</a></li>
+							<li><a href="{% url "user:changepass" %}" class="dropdown-item">Change Password</a></li>
+							<li><a href="{% url "user:logout" %}" class="dropdown-item">Log Out</a></li>
 						</ul>
 					</div>
 					<li><a href="#"><img src="{% static 'img/icons/cart.png' %}"></a></li>
-					<li><a href="#"><img src="{% static 'img/icons/profile.png' %}"></a></li>
+					<li><a href="{% url "user:profile" %}"><img src="{% static 'img/icons/profile.png' %}"></a></li>
 				</ul>
 			</div>
 		</div>
@@ -80,7 +80,7 @@
 							<li><a href="{% url 'catalog:index' %}">Products</a></li>
 							<li><a href="{% url 'main:about' %}">About Us</a></li>
 							<li><a href="{% url 'main:contact' %}">Contact Us</a></li>
-							<li><a href="#">Profile</a></li>
+							<li><a href="{% url "user:profile" %}">Profile</a></li>
 						</ul>
 					</div>
 				</div>
