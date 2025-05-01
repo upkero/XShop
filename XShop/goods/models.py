@@ -82,10 +82,12 @@ class Products(models.Model):
         verbose_name="Category"
     )
     is_active = models.BooleanField(
-        default=True
+        default=True,
+        verbose_name="Is product active?",
     )
     is_new = models.BooleanField(
-        default=True
+        default=True,
+        verbose_name="Is product new?",
     )
     
     class Meta:
