@@ -84,6 +84,9 @@ class Products(models.Model):
     is_active = models.BooleanField(
         default=True
     )
+    is_new = models.BooleanField(
+        default=True
+    )
     
     class Meta:
         db_table = "product"

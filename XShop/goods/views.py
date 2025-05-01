@@ -8,8 +8,8 @@ def catalog(request, category_slug=False):
     
     page = request.GET.get('page', 1)
     on_sale = request.GET.get('on_sale', None)
+    new = request.GET.get('new', None)
     # favorites = request.GET.get('favorites', None)
-    # new = request.GET.get('new', None)
     
     if category_slug:
         products = get_list_or_404(Products.objects.filter(is_active=True, category__slug=category_slug))
@@ -18,10 +18,10 @@ def catalog(request, category_slug=False):
     
     if on_sale:
         products = products.filter(discount__gt=0)
+    if new:
+        products = products.filter(is_new=True)
     # if favorites:
     #     products = products.filter()
-    # if new:
-    #     products = products.filter(new)
     
     paginator = Paginator(products, 4)
     current_page = paginator.page(int(page))
