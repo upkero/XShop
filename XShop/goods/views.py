@@ -37,7 +37,7 @@ def catalog(request, category_slug=False):
     # if favorites:
     #     products = products.filter()
 
-    paginator = Paginator(products, 4)
+    paginator = Paginator(products, 12)
     current_page = paginator.page(int(page))
 
     total_pages = paginator.num_pages
