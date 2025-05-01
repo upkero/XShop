@@ -24,23 +24,26 @@
 		</div>
 	
 		<!-- Фильтры -->
-		<div class="catalog__filters hidden">
-			<label class="custom-checkbox">
-				<input type="checkbox" name="on-sale">
-				<span class="checkmark"></span>
-				On Sale
-			</label>
-			<label class="custom-checkbox">
-				<input type="checkbox" name="favorites">
-				<span class="checkmark"></span>
-				Favorites
-			</label>
-			<label class="custom-checkbox">
-				<input type="checkbox" name="new">
-				<span class="checkmark"></span>
-				New
-			</label>
-		</div>
+		<form action="" method="get" class="catalog__filters hidden">
+			
+				<label class="custom-checkbox">
+					<input type="checkbox" name="on-sale">
+					<span class="checkmark"></span>
+					On Sale
+				</label>
+				<label class="custom-checkbox">
+					<input type="checkbox" name="favorites">
+					<span class="checkmark"></span>
+					Favorites
+				</label>
+				<label class="custom-checkbox">
+					<input type="checkbox" name="new">
+					<span class="checkmark"></span>
+					New
+				</label>
+				<button type="submit" class="catalog__filter-apply-btn">Apply</button>
+			
+			</form>
 
 		{% if slug_url %}
 			<div class="catalog__category">

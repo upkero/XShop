@@ -2433,16 +2433,25 @@ background-color: #a82e70;;
   display: flex;
   align-items: center;
   gap: 10px;
+  
 }
 
 .catalog__sort-select {
-  background-color: #2a2a2a;
-  border: 1px solid #C93789;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #2a2a2a; /* или другой цвет под фон */
   color: #E6C5C8;
   padding: 8px 12px;
+  border: 2px solid #C93789;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 14px;
+  cursor: pointer;
+  background-image: none; /* убирает стандартную стрелку */
+  background-position: right 10px center;
+  background-repeat: no-repeat;
 }
+
 
 .catalog__filter-btn {
   position: relative; /* Для удобства размещения фильтров */
@@ -2533,6 +2542,21 @@ background-color: #a82e70;;
 /* Скрытое состояние */
 .hidden {
   display: none;
+}
+
+.catalog__filter-apply-btn {
+  background-color: #C93789;
+  color: #E6C5C8;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.catalog__filter-apply-btn:hover {
+  background-color: #a82e70;
 }
 
 
