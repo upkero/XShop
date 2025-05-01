@@ -62,6 +62,16 @@
 				Currently viewing: <strong>{{category.name}}</strong>
 			</div>
 		{% endif %}
+		{% if request.GET.q %}
+			<div class="catalog__category">
+				Search results for <strong>{{request.GET.q}}</strong>:
+			</div>
+			{% if not products %}
+				<div class="catalog__category">
+					Nothing found for your request
+				</div>
+			{% endif %}
+		{% endif %}
 	
 		<div class="catalog__grid">
 
@@ -83,7 +93,13 @@
 								<img src="{% static "img/no found.png" %}" alt="Not Found">
 							{% endif %}
 						</div>
-						<div class="products__column_text">{{ product.name }}</div>
+						<div class="products__column_text">
+							{% if product.headline %}
+								{{ product.headline|safe }}
+							{% else %}
+								{{ product.name }}
+							{% endif %}
+						</div>
 						<div class="products__column_price">
 							{% if product.discount %}
 								<p class="products__column_price_old-price">
@@ -104,37 +120,39 @@
 		</div>
 	
 		<!-- Пагинация -->
-		<nav class="catalog__pagination" aria-label="Page navigation">
-			<ul class="catalog__pagination-list">
-			<div class="catalog__pagination-wrapper">
-				<li class="catalog__page-item {% if not products.has_previous %}disabled{% endif %}">
-				<a class="catalog__page-link" href="
-				{% if products.has_previous %}
-					?{% change_params page=products.previous_page_number %}
-				{% else %}
-					#
-				{% endif %}
-				">Previous</a>
-				</li>
-				{% for page in products.paginator.page_range %}
-					{% if page >= products.number|add:-2 and page <= products.number|add:2 %}
-						<li class="catalog__page-item {% if products.number == page %} active{% endif %}">
-							<a class="catalog__page-link" href="?{% change_params page=page %}">{{ page }}</a>
-						</li>
-					{% endif %}
-				{% endfor %}
-				<li class="catalog__page-item {% if not products.has_next %}disabled{% endif %}">
+		{% if products %}
+			<nav class="catalog__pagination" aria-label="Page navigation">
+				<ul class="catalog__pagination-list">
+				<div class="catalog__pagination-wrapper">
+					<li class="catalog__page-item {% if not products.has_previous %}disabled{% endif %}">
 					<a class="catalog__page-link" href="
-					{% if products.has_next %}
-						?{% change_params page=products.next_page_number %}
+					{% if products.has_previous %}
+						?{% change_params page=products.previous_page_number %}
 					{% else %}
 						#
 					{% endif %}
-					">Next</a>
-				</li>
-			</div>
-			</ul>
-		</nav>
+					">Previous</a>
+					</li>
+					{% for page in products.paginator.page_range %}
+						{% if page >= products.number|add:-2 and page <= products.number|add:2 %}
+							<li class="catalog__page-item {% if products.number == page %} active{% endif %}">
+								<a class="catalog__page-link" href="?{% change_params page=page %}">{{ page }}</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+					<li class="catalog__page-item {% if not products.has_next %}disabled{% endif %}">
+						<a class="catalog__page-link" href="
+						{% if products.has_next %}
+							?{% change_params page=products.next_page_number %}
+						{% else %}
+							#
+						{% endif %}
+						">Next</a>
+					</li>
+				</div>
+				</ul>
+			</nav>
+		{% endif %}
 	</div>
   </div>		  
 <script>
