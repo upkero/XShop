@@ -41,11 +41,13 @@
 				New
 			</label>
 		</div>
-		{% comment %} 	
-		<div class="catalog__category">
-			Currently viewing: <strong>Black Tea</strong>
-		</div>
-	 	{% endcomment %}
+
+		{% if slug_url %}
+			<div class="catalog__category">
+				Currently viewing: <strong>{{category.name}}</strong>
+			</div>
+		{% endif %}
+	
 		<div class="catalog__grid">
 
 			{% for product in products %}
@@ -118,14 +120,6 @@
 			</div>
 			</ul>
 		</nav>
-	<!-- {% for page in page_obj.paginator.page_range %}
-	{% if page == page_obj.number %}
-	<li class="catalog__page-item active"><a class="catalog__page-link">{{ page }}</a></li>
-	{% else %}
-	<li class="catalog__page-item"><a class="catalog__page-link" href="?page={{ page }}">{{ page }}</a></li>
-	{% endif %}
-	{% endfor %} -->
-
 	</div>
   </div>		  
 <script>

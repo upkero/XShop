@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_list_or_404
 
-from goods.models import Products
+from goods.models import Categories, Products
 
 
 def catalog(request, category_slug=False):
@@ -20,6 +20,9 @@ def catalog(request, category_slug=False):
         'products': current_page,
         'slug_url': category_slug,
     }
+    
+    if category_slug:
+        context['category'] = Categories.objects.get(slug = category_slug)
     
     return render(request, 'goods/catalog.html', context)
 
