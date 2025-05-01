@@ -7,7 +7,10 @@ from goods.utils import q_search
 
 def catalog(request, category_slug=False):
 
-    page = request.GET.get("page", 1)
+    try:
+        page = int(request.GET.get('page', 1))
+    except ValueError:
+        page = 1
 
     query = request.GET.get("q", None)
 
@@ -37,9 +40,21 @@ def catalog(request, category_slug=False):
     paginator = Paginator(products, 4)
     current_page = paginator.page(int(page))
 
+    total_pages = paginator.num_pages
+    start = max(1, page - 1)
+    end = min(total_pages, page + 1)
+
+    if (end - start) < 2:
+        if start == 1:
+            end = min(total_pages, start + 2)
+        elif end == total_pages:
+            start = max(1, end - 2)    
+    
     context = {
         "products": current_page,
         "slug_url": category_slug,
+        "page_range_start": start,
+        "page_range_end": end,
     }
 
     if category_slug:

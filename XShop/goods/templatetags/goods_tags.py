@@ -16,3 +16,7 @@ def change_params(context, **kwargs):
     query = context['request'].GET.dict()
     query.update(kwargs)
     return urlencode(query)
+
+@register.filter
+def to(start, end):
+    return range(start, end + 1)
