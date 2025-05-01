@@ -26,31 +26,36 @@
 	
 		<!-- Фильтры -->
 		<form action="
-		{% if slug_url %}
-			{% url "catalog:index_slug" slug_url %}
+		{% if request.GET.q %}
+			{% url "catalog:search" %}		
 		{% else %}
-			{% url "catalog:index" %}
+			{% if slug_url %}
+				{% url "catalog:index_slug" slug_url %}
+			{% else %}
+				{% url "catalog:index" %}
+			{% endif %}
 		{% endif %}
 		" method="get" class="catalog__filters hidden">
-			
-				<label class="custom-checkbox">
-					<input type="checkbox" name="on_sale" value="on"{% if request.GET.on_sale %}checked{% endif %}>
-					<span class="checkmark"></span>
-					On Sale
-				</label>
-				<label class="custom-checkbox">
-					<input type="checkbox" name="favorites" value="on"{% if request.GET.favorites %}checked{% endif %}>
-					<span class="checkmark"></span>
-					Favorites
-				</label>
-				<label class="custom-checkbox">
-					<input type="checkbox" name="new" value="on"{% if request.GET.new %}checked{% endif %}>
-					<span class="checkmark"></span>
-					New
-				</label>
-				<button type="submit" class="catalog__filter-apply-btn">Apply</button>
-			
-			</form>
+			{% if request.GET.q %}
+				<input type="hidden" name="q" value="{{ request.GET.q }}"
+			{% endif %}
+			<label class="custom-checkbox">
+				<input type="checkbox" name="on_sale" value="on"{% if request.GET.on_sale %}checked{% endif %}>
+				<span class="checkmark"></span>
+				On Sale
+			</label>
+			<label class="custom-checkbox">
+				<input type="checkbox" name="favorites" value="on"{% if request.GET.favorites %}checked{% endif %}>
+				<span class="checkmark"></span>
+				Favorites
+			</label>
+			<label class="custom-checkbox">
+				<input type="checkbox" name="new" value="on"{% if request.GET.new %}checked{% endif %}>
+				<span class="checkmark"></span>
+				New
+			</label>
+			<button type="submit" class="catalog__filter-apply-btn">Apply</button>
+		</form>
 
 		{% if slug_url %}
 			<div class="catalog__category">

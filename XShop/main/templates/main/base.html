@@ -94,10 +94,10 @@
 						</ul>
 					</div>
 				</div>
-				<div class="footer__search">
-                    <input type="search" class="footer__search-input" placeholder="Search something...">
+				<form class="footer__search" role="search" action="{% url "catalog:search" %}" method="get">
+                    <input type="search" name="q" class="footer__search-input" placeholder="Search something...">
                     <button type="submit" class="footer__search-btn">Search</button>
-                </div>
+                </form>
 			</div>
 		</div>
 	</div>

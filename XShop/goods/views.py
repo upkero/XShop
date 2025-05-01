@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_list_or_404
 
 from goods.models import Categories, Products
+from goods.utils import q_search
 
 
 def catalog(request, category_slug=False):
@@ -9,18 +10,22 @@ def catalog(request, category_slug=False):
     page = request.GET.get('page', 1)
     
     
-    order_by = request.GET.get('order_by', 'default')
+    query = request.GET.get('q', None)
     
+    
+    order_by = request.GET.get('order_by', 'default')
     
     on_sale = request.GET.get('on_sale', None)
     new = request.GET.get('new', None)
     # favorites = request.GET.get('favorites', None)
     
     
-    if category_slug:
-        products = Products.objects.filter(is_active=True, category__slug=category_slug)
-    else:
+    if query:
+        products = q_search(query)
+    elif not category_slug:
         products = Products.objects.filter(is_active=True)
+    else:
+        products = Products.objects.filter(is_active=True, category__slug=category_slug)
     
     
     if order_by and order_by != 'default':
