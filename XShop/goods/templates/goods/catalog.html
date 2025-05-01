@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load goods_tags %}
 
 {% block title %}Products{% endblock title %}
 
@@ -104,7 +105,7 @@
 				<li class="catalog__page-item {% if not products.has_previous %}disabled{% endif %}">
 				<a class="catalog__page-link" href="
 				{% if products.has_previous %}
-					?page={{products.previous_page_number}}
+					?{% change_params page=products.previous_page_number %}
 				{% else %}
 					#
 				{% endif %}
@@ -113,14 +114,14 @@
 				{% for page in products.paginator.page_range %}
 					{% if page >= products.number|add:-2 and page <= products.number|add:2 %}
 						<li class="catalog__page-item {% if products.number == page %} active{% endif %}">
-							<a class="catalog__page-link" href="?page={{page}}">{{ page }}</a>
+							<a class="catalog__page-link" href="?{% change_params page=page %}">{{ page }}</a>
 						</li>
 					{% endif %}
 				{% endfor %}
 				<li class="catalog__page-item {% if not products.has_next %}disabled{% endif %}">
 					<a class="catalog__page-link" href="
 					{% if products.has_next %}
-						?page={{products.next_page_number}}
+						?{% change_params page=products.next_page_number %}
 					{% else %}
 						#
 					{% endif %}
