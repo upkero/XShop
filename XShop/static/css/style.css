@@ -589,6 +589,20 @@ body {
   filter: drop-shadow(0 0 5px #C93789);
 }
 
+.products__column_new{
+  display: inline-block; /* Чтобы кнопка вела себя как инлайн элемент */
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 500;
+  color: #C93789;
+  
+  -webkit-filter: drop-shadow(0 0 5px #C93789);
+  filter: drop-shadow(0 0 5px #C93789);
+}
+
 .add-to-favorites {
   background: none; /* Убираем фон */
   border: none; /* Убираем границу */

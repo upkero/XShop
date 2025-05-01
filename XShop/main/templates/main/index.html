@@ -79,6 +79,11 @@
 					{% if product.strength %}
 						<div class="products__column_strength">{{ product.strength }}</div>
 					{% endif %}
+
+					{% if product.is_new %}
+						<div class="products__column_new">NEW</div>
+					{% endif %}
+
 					<button class="add-to-favorites" data-product-id="0"><img src="{% static 'img/icons/star-line-icon.png' %}"  alt="Favorite Star" class="favorite-icon"></button>
 					
 					<a href="{% url "catalog:product" product.slug %}" class="products__column">
