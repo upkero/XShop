@@ -14,30 +14,36 @@
 			<div class="catalog__sort">
 				<label for="sort-select">Sort by:</label>
 				<select id="sort-select" class="catalog__sort-select">
-				<option value="default">Default</option>
-				<option value="strength-asc">Strength ↑</option>
-				<option value="strength-desc">Strength ↓</option>
-				<option value="price-asc">Price ↑</option>
-				<option value="price-desc">Price ↓</option>
+				<option name="order_by" value="default">Default</option>
+				<option name="order_by" value="-strength">Strength ↑</option>
+				<option name="order_by" value="strength">Strength ↓</option>
+				<option name="order_by" value="-price">Price ↑</option>
+				<option name="order_by" value="price">Price ↓</option>
 				</select>
 			</div>
 		</div>
 	
 		<!-- Фильтры -->
-		<form action="" method="get" class="catalog__filters hidden">
+		<form action="
+		{% if slug_url %}
+			{% url "catalog:index" slug_url %}
+		{% else %}
+			{% url "catalog:index" %}
+		{% endif %}
+		" method="get" class="catalog__filters hidden">
 			
 				<label class="custom-checkbox">
-					<input type="checkbox" name="on-sale">
+					<input type="checkbox" name="on_sale" value="on"{% if request.GET.on_sale %}checked{% endif %}>
 					<span class="checkmark"></span>
 					On Sale
 				</label>
 				<label class="custom-checkbox">
-					<input type="checkbox" name="favorites">
+					<input type="checkbox" name="favorites" value="on"{% if request.GET.favorites %}checked{% endif %}>
 					<span class="checkmark"></span>
 					Favorites
 				</label>
 				<label class="custom-checkbox">
-					<input type="checkbox" name="new">
+					<input type="checkbox" name="new" value="on"{% if request.GET.new %}checked{% endif %}>
 					<span class="checkmark"></span>
 					New
 				</label>
