@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if form.non_field_errors %}
+    <div class="notification-container">
+        <div class="notification notification--error">
+            <div class="notification__message">
+                {% for error in form.non_field_errors %}
+                    {{ error }}<br>
+                {% endfor %}
+            </div>
+            <button type="button" class="notification__close" data-bs-dismiss="alert" aria-label="Close" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+    </div>
+{% endif %}

@@ -1078,13 +1078,13 @@ background-color: #a82e70;;
 
 .notification-container {
   position: fixed;
-  top: 75px;
+  top: 9%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -1104,6 +1104,10 @@ background-color: #a82e70;;
   text-align: left;
 }
 
+.notification__message {
+  margin-right: 10px;
+}
+
 .notification--success {
   border-left-color: #2ecc71;
   box-shadow: 0 0 10px #2ecc71;
@@ -1121,8 +1125,9 @@ background-color: #a82e70;;
 
 .notification__close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
   background: none;
   border: none;
   color: #E6C5C8;
