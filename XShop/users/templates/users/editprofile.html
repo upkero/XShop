@@ -8,25 +8,70 @@
 	<div class="profile-card profile-card--wide">
 		<h2 class="profile-title">Edit Profile</h2>
 
-		<form>
+		<form action="{% url "user:editprofile" %}" method="post">
+			{% csrf_token %}
 			<div class="profile-group">
-				<label for="username">Username</label>
-				<input type="text" id="username" class="profile-input" value="johndoe" placeholder="Enter your username">
+				<label for="id_username">Username</label>
+				<input type="text" 
+				id="id_username" 
+				class="profile-input" 
+				name="username"
+				value="{{form.username.value}}" 
+				placeholder="Enter your username"
+				required>
+				{% if form.username.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.username.errors }}
+					</div>
+				{% endif %}
 			</div>
 
 			<div class="profile-group">
-				<label for="firstName">First Name</label>
-				<input type="text" id="firstName" class="profile-input" value="John" placeholder="Enter your first name">
+				<label for="id_first_name">First Name</label>
+				<input type="text" 
+				id="id_first_name" 
+				class="profile-input" 
+				name="first_name"
+				value="{{form.first_name.value}}" 
+				placeholder="Enter your first name"
+				required>
+				{% if form.first_name.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.first_name.errors }}
+					</div>
+				{% endif %}
 			</div>
 
 			<div class="profile-group">
-				<label for="lastName">Last Name</label>
-				<input type="text" id="lastName" class="profile-input" value="Doe" placeholder="Enter your last name">
+				<label for="id_last_name">Last Name</label>
+				<input type="text" 
+				id="id_last_name" 
+				class="profile-input" 
+				name="last_name"
+				value="{{form.last_name.value}}" 
+				placeholder="Enter your last name"
+				required>
+				{% if form.last_name.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.last_name.errors }}
+					</div>
+				{% endif %}
 			</div>
 
 			<div class="profile-group">
-				<label for="email">Email</label>
-				<input type="email" id="email" class="profile-input" value="johndoe@example.com" placeholder="Enter your email">
+				<label for="id_email">Email</label>
+				<input type="email" 
+				id="id_email" 
+				class="profile-input" 
+				name="email"
+				value="{{form.email.value}}" 
+				placeholder="Enter your email"
+				required>
+				{% if form.email.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.email.errors }}
+					</div>
+				{% endif %}
 			</div>
 
 			<button type="submit" class="profile-btn">Save Changes</button>

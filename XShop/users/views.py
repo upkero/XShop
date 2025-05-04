@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import EditProfileForm, UserLoginForm, UserRegistrationForm
 
 
 def login(request):
@@ -43,6 +43,13 @@ def registration(request):
 
 
 def profile(request):
+    # if request.method == 'POST':
+    #     form = EditProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+    #     if form.is_valid():
+    #         form.save()
+    #         return HttpResponseRedirect(reverse('user:profile'))
+    # else:
+    #     form = EditProfileForm(instance=request.user)
     context = {
         
     }
@@ -62,8 +69,16 @@ def changepass(request):
 
 
 def editprofile(request):
-    context = {
+    if request.method == 'POST':
+        form = EditProfileForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('user:profile'))
+    else:
+        form = EditProfileForm(instance=request.user)
         
+    context = {
+        'form': form
     }
     return render(request, 'users/editprofile.html', context)
 
