@@ -74,7 +74,7 @@ def editprofile(request):
         form = EditProfileForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('user:profile'))
+            return HttpResponseRedirect(reverse('user:editprofile'))
     else:
         form = EditProfileForm(instance=request.user)
         
