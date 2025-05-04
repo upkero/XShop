@@ -1,6 +1,8 @@
-from email.mime import image
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.core.validators import FileExtensionValidator
+from django.core.exceptions import ValidationError
+from PIL import Image
 
 from users.models import User
 
@@ -37,7 +39,7 @@ class UserRegistrationForm(UserCreationForm):
     password1 = forms.CharField()
     password2 = forms.CharField()
 
-class ChangeAvatarForm:
+class ChangeAvatarForm(UserChangeForm):
     
     class Meta:
         model = User
@@ -45,7 +47,27 @@ class ChangeAvatarForm:
             "image",
         )
     
-    image = forms.ImageField()
+    image = forms.ImageField(
+        required=False,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'webp'])
+        ],
+        )
+    
+    # def clean_image(self):
+    #     image = self.cleaned_data.get('image')
+
+    #     if image:
+    #         if image.size > 2 * 1024 * 1024:
+    #             raise forms.ValidationError("Image file too large ( > 2MB )")
+            
+    #         try:
+    #             img = Image.open(image)
+    #             img.verify()
+    #         except Exception:
+    #             raise forms.ValidationError("Invalid image file")
+        
+    #     return image
 
 class EditProfileForm(UserChangeForm):
     

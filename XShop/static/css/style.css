@@ -1583,7 +1583,6 @@ background-color: #a82e70;;
 /* Аватар */
 .avatar-group {
   text-align: center;
-  margin-bottom: 24px;
 }
 
 .avatar-img {
@@ -1600,7 +1599,7 @@ background-color: #a82e70;;
 }
 
 /* Кастомная кнопка выбора файла */
-.profile-file-btn {
+.profile-avatar-btn {
   padding: 8px 16px;
   background-color: #C93789;
   color: #E6C5C8;
@@ -1609,13 +1608,23 @@ background-color: #a82e70;;
   transition: background-color 0.3s ease;
   font-size: 14px;
   font-weight: 500;
-  display: block;
   margin: 0px auto;
   max-width: 40%;
+  margin-bottom: 10px;
 }
 
-.profile-file-btn:hover {
+.profile-avatar-btn:hover {
   background-color: #a82e70;
+}
+
+.profile-file-btn {
+  display: block;
+}
+
+.profile-save-btn {
+  margin-top: 10px;
+  margin-bottom: 24px;
+  display: none;
 }
 
 .profile-group {

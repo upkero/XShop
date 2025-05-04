@@ -50,7 +50,17 @@
 						{% else %}
 							{% url "user:login" %}
 						{% endif %}
-						"><img src="{% static 'img/icons/profile.png' %}"></a></li>
+						"><img src="
+						{% if user.is_authenticated %}
+							{% if user.image %}
+								{{ user.image.url }}" class="avatar-img" style="width: 40px; height: 40px;
+							{% else %}
+								{% static 'img/icons/profile.png' %}
+							{% endif %}
+						{% else %}
+							{% static 'img/icons/profile.png' %}
+						{% endif %}
+						"></a></li>
 				</ul>
 			</div>
 		</div>
