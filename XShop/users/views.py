@@ -2,6 +2,8 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 from users.forms import ChangeAvatarForm, EditProfileForm, UserLoginForm, UserRegistrationForm
 
@@ -89,3 +91,11 @@ def forgotpass(request):
         
     }
     return render(request, 'users/forgotpass.html', context)
+
+@require_POST
+@login_required
+def delete_account(request):
+    user = request.user
+    logout(request)
+    user.delete()
+    return redirect(reverse('main:index'))

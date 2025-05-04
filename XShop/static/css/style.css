@@ -1857,6 +1857,10 @@ background-color: #a82e70;;
   margin-right: 10px;
 }
 
+.profile-fullwidth-card form{
+  display: inline;
+}
+
 .profile-fullwidth-btn:hover {
   background-color: #a82e70;
 }

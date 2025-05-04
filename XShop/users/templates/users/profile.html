@@ -95,7 +95,12 @@
         <a href="{% url 'user:editprofile' %}" class="profile-fullwidth-btn">Edit Profile</a>
         <a href="{% url 'user:changepass' %}" class="profile-fullwidth-btn">Change Password</a>
         <a href="{% url 'user:logout' %}" class="profile-fullwidth-btn">Log Out</a>
-        <a href="#" class="profile-fullwidth-btn profile-fullwidth-btn--danger">Delete Account</a>
+        <form action="{% url 'user:delete_account' %}" method="post" onsubmit="return confirm('Are you sure you want to delete your account?');">
+            {% csrf_token %}
+            <button type="submit" class="profile-fullwidth-btn profile-fullwidth-btn--danger">
+                Delete Account
+            </button>
+        </form>
     </div>
 </div>
 
