@@ -49,7 +49,7 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 
 ### 1. Clone the repository:
 ```bash
-   git clone https://github.com/your-username/XShop.git
+   git clone https://github.com/upkero/XShop.git
 ```
 ### 2. Navigate into the project directory:
 ```bash
