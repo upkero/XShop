@@ -33,7 +33,7 @@
 			</div>
 			<div class="header__icons">
 				<ul>
-					{% comment %} <!-- {{типа if в аккаунте}} --> {% endcomment %}
+					{% if user.is_authenticated %}
 					<div class="dropdown">
 						<li><a href="{% url "user:profile" %}"><img src="{% static 'img/icons/gear.png' %}"></a></li>
 						<ul class="dropdown-menu">
@@ -42,8 +42,15 @@
 							<li><a href="{% url "user:logout" %}" class="dropdown-item">Log Out</a></li>
 						</ul>
 					</div>
+					{% endif %}
 					<li><a href="#"><img src="{% static 'img/icons/cart.png' %}"></a></li>
-					<li><a href="{% url "user:profile" %}"><img src="{% static 'img/icons/profile.png' %}"></a></li>
+					<li><a href="
+						{% if user.is_authenticated %}
+							{% url "user:profile" %}
+						{% else %}
+							{% url "user:login" %}
+						{% endif %}
+						"><img src="{% static 'img/icons/profile.png' %}"></a></li>
 				</ul>
 			</div>
 		</div>
@@ -81,7 +88,11 @@
 							<li><a href="{% url 'catalog:index' %}">Products</a></li>
 							<li><a href="{% url 'main:about' %}">About Us</a></li>
 							<li><a href="{% url 'main:contact' %}">Contact Us</a></li>
+							{% if user.is_authenticated %}
 							<li><a href="{% url "user:profile" %}">Profile</a></li>
+							{% else %}
+							<li><a href="{% url "user:login" %}">Sign In</a></li>
+							{% endif %}
 						</ul>
 					</div>
 				</div>

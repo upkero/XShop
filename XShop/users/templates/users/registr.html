@@ -8,36 +8,97 @@
     <div class="auth-card auth-card--wide">
         <h2 class="auth-title">Sign Up</h2>
         <form method="post" action="{% url 'user:registration' %}" class="auth-form">
+            {% csrf_token %}
             <div class="auth-form-grid">
                 <div class="auth-group">
-                    <label for="first_name">First Name*</label>
-                    <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+                    <label for="id_first_name">First Name*</label>
+                    <input type="text" 
+                    id="id_first_name" 
+                    value = "{% if form.first_name.value %}{{form.first_name.value}}{% endif %}"
+                    name="first_name" 
+                    placeholder="Enter your first name" 
+                    required>
+                    {% if form.first_name.errors %}
+                        <div class="notification-inline" style="margin-top: 10px;">
+                            {{ form.first_name.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="auth-group">
-                    <label for="last_name">Last Name*</label>
-                    <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+                    <label for="id_last_name">Last Name*</label>
+                    <input type="text" 
+                    id="id_last_name" 
+                    value = "{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"
+                    name="last_name" 
+                    placeholder="Enter your last name" 
+                    required>
+                    {% if form.last_name.errors %}
+                        <div class="notification-inline" style="margin-top: 10px;">
+                            {{ form.last_name.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="auth-group">
-                    <label for="username">Username*</label>
-                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                    <label for="id_username">Username*</label>
+                    <input type="text" 
+                    id="id_username"
+                    value = "{% if form.username.value %}{{form.username.value}}{% endif %}"
+                    name="username" 
+                    placeholder="Choose a username" 
+                    required>
+                    {% if form.username.errors %}
+                        <div class="notification-inline" style="margin-top: 10px;">
+                            {{ form.username.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="auth-group">
-                    <label for="email">Email*</label>
-                    <input type="email" id="email" name="email" placeholder="Your email address" required>
+                    <label for="id_email">Email*</label>
+                    <input type="email" 
+                    id="id_email" 
+                    value = "{% if form.email.value %}{{form.email.value}}{% endif %}"
+                    name="email" 
+                    placeholder="Your email address" 
+                    required>
+                    {% if form.email.errors %}
+                        <div class="notification-inline" style="margin-top: 10px;">
+                            {{ form.email.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                     <div class="auth-group">
-                        <label for="password1">Password*</label>
+                        <label for="id_password1">Password*</label>
                         <div class="password-wrapper">
-                            <input type="password" id="password1" name="password1" placeholder="Enter a password">
+                            <input type="password" 
+                            id="id_password1" 
+                            value = "{% if form.password1.value %}{{form.password1.value}}{% endif %}"
+                            name="password1" 
+                            placeholder="Enter a password"
+                            required>
                             <span class="toggle-password" onclick="togglePassword(this)">🙉</span>
                         </div>
+                        {% if form.password1.errors %}
+                            <div class="notification-inline" style="margin-top: 10px;">
+                                {{ form.password1.errors }}
+                            </div>
+                        {% endif %}
                     </div>
                 <div class="auth-group">
-                        <label for="password2">Confirm Password*</label>
+                        <label for="id_password2">Confirm Password*</label>
                         <div class="password-wrapper">
-                            <input type="password" id="password2" name="password2" placeholder="Repeat your password">
+                            <input type="password" 
+                            id="id_password2" 
+                            value = "{% if form.password2.value %}{{form.password2.value}}{% endif %}"
+                            name="password2" 
+                            placeholder="Repeat your password"
+                            required>
                             <span class="toggle-password" onclick="togglePassword(this)">🙉</span>
                         </div>
+                        {% if form.password2.errors %}
+                            <div class="notification-inline" style="margin-top: 10px;">
+                                {{ form.password2.errors }}
+                            </div>
+                        {% endif %}
                     </div>
             </div>
 

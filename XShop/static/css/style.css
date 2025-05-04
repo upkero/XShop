@@ -1156,6 +1156,12 @@ background-color: #a82e70;;
   margin-top: 6px;
 }
 
+.form--error{
+  min-width: 260px;
+  max-width: 260px;
+  width: 260px;
+}
+
 /*========================= cart ===============================*/
 .cart {
   max-width: 900px;

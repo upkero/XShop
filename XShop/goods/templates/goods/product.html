@@ -31,9 +31,11 @@
 				<p class="itemview__desc">{{ product.description }}</p>
 				<div class="itemview__actions">
 					<button class="itemview__cartbtn">Add to Cart</button>
+					{% if user.is_authenticated %}
 					<button class="itemview__favbtn">
 						<img src="{% static 'img/icons/star-line-icon.png' %}" alt="Favorite">
 					</button>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -76,6 +78,7 @@
 				</div>
 			</div>
 			<!-- Форма отзыва -->
+			{% if user.is_authenticated %}
 			<form>
 				<textarea class="itemview__review-input" placeholder="Write your review..." required></textarea>
 
@@ -90,7 +93,8 @@
 					<input type="hidden" name="rating" id="review-rating" required>
 					<button type="submit" class="itemview__review-button">Submit Review</button>
 				</div>
-			</form>				  
+			</form>		
+			{% endif %}		  
 		</div>
 	</div>
 <script>
