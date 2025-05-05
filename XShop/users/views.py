@@ -44,6 +44,13 @@ def registration(request):
     return render(request, 'users/registr.html', context)
 
 
+def forgotpass(request):
+    context = {
+        
+    }
+    return render(request, 'users/forgotpass.html', context)
+
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -89,12 +96,6 @@ def editprofile(request):
     }
     return render(request, 'users/editprofile.html', context)
 
-
-def forgotpass(request):
-    context = {
-        
-    }
-    return render(request, 'users/forgotpass.html', context)
 
 @require_POST
 @login_required
