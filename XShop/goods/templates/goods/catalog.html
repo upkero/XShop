@@ -37,8 +37,9 @@
 		{% endif %}
 		" method="get" class="catalog__filters hidden">
 			{% if request.GET.q %}
-				<input type="hidden" name="q" value="{{ request.GET.q }}"
+				<input type="hidden" name="q" value="{{ request.GET.q }}">
 			{% endif %}
+
 			<label class="custom-checkbox">
 				<input type="checkbox" name="on_sale" value="on"{% if request.GET.on_sale %}checked{% endif %}>
 				<span class="checkmark"></span>
