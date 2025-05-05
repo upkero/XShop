@@ -44,6 +44,7 @@ def registration(request):
     return render(request, 'users/registr.html', context)
 
 
+@login_required
 def profile(request):
     if request.method == 'POST':
         form = ChangeAvatarForm(request.POST, request.FILES, instance=request.user)
@@ -59,11 +60,13 @@ def profile(request):
     return render(request, 'users/profile.html', context)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return redirect(reverse('main:index'))
 
 
+@login_required
 def changepass(request):
     context = {
         
@@ -71,6 +74,7 @@ def changepass(request):
     return render(request, 'users/changepass.html', context)
 
 
+@login_required
 def editprofile(request):
     if request.method == 'POST':
         form = EditProfileForm(data=request.POST, instance=request.user)
