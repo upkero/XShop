@@ -1,10 +1,4 @@
 {% load static %}
-{% load carts_tags %}
-
-{% user_carts request as carts %}
-
-
-
 
 <!-- Блок с товарами в корзине -->
 <div id="cart-items-container" class="cart__items cart__items_in-cart">
@@ -23,7 +17,7 @@
                 <span class="cart__total">${{cart.product_price}}</span>
             </div>
 
-            <a href="{% url "cart:remove" 1 %}" class="cart__remove remove-from-cart" data-cart-id="">
+            <a href="{% url "cart:remove" cart.id %}" class="cart__remove remove-from-cart" data-cart-id="">
                 <img src="{% static 'img/icons/trash3-fill.png' %}" alt="Remove">
             </a>
         </div>
