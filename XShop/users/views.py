@@ -121,3 +121,7 @@ def delete_account(request):
     messages.success(request, f'We’re sorry to see you go, { user.username }. Your account is now deleted.')
     user.delete()
     return redirect(reverse('main:index'))
+
+
+def users_cart(request):
+    return render(request, 'users/users_cart.html')

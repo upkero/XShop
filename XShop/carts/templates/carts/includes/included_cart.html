@@ -1,0 +1,33 @@
+{% load static %}
+
+<!-- Блок с товарами в корзине -->
+<div id="cart-items-container" class="cart__items cart__items_in-cart">
+    <div class="cart__item">
+        <a href="#" class="cart__name">Awesome Product</a>
+
+        <div class="cart__controls">
+            <button class="cart__btn cart__btn--minus decrement" data-cart-id="" data-cart-change-url="/cart/decrement/">−</button>
+            <input type="text" class="cart__qty number" value="1" readonly>
+            <button class="cart__btn cart__btn--plus increment" data-cart-id="" data-cart-change-url="/cart/increment/">+</button>
+        </div>
+
+        <span class="cart__multiply">×</span>
+        <span class="cart__price">$100.00</span>
+        <span class="cart__total">$100.00</span>
+
+        <a href="{% url "cart:cart_remove" 1 %}" class="cart__remove remove-from-cart" data-cart-id="">
+            <img src="{% static 'img/icons/trash3-fill.png' %}" alt="Remove">
+        </a>
+    </div>
+</div>
+<!-- Блок для промокода -->
+<div class="cart__promo-code">
+    <input type="text" id="promo-code" class="cart__promo-input" placeholder="Promo Code">
+    <button class="cart__promo-btn" id="apply-promo-code">Apply</button>
+</div>
+<!-- Сумма корзины -->
+<div class="cart__summary">
+    <span>Total <strong>1</strong> item</span>
+    <p class="cart__total_without-discount"> $200 </p>
+    <strong class="cart__total">$100.00</strong>
+</div>

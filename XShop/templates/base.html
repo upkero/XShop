@@ -43,7 +43,7 @@
 						</ul>
 					</div>
 					{% endif %}
-					<li><a href="#"><img src="{% static 'img/icons/cart.png' %}"></a></li>
+					<li><a href="{% url "user:users_cart" %}"><img src="{% static 'img/icons/cart.png' %}"></a></li>
 					<li><a href="
 						{% if user.is_authenticated %}
 							{% url "user:profile" %}

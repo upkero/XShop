@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cart{% endblock title %}
+
+{% block main %}
+<div class="cart">
+    <h2 class="cart__title">Shopping Cart</h2>
+
+    {% include "carts/includes/included_cart.html" %}
+
+    <a href="#" class="products__btn">Proceed to Checkout</a>
+</div>
+{% endblock main %}
