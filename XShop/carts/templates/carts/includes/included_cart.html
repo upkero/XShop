@@ -1,24 +1,33 @@
 {% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
+
+
 
 <!-- Блок с товарами в корзине -->
 <div id="cart-items-container" class="cart__items cart__items_in-cart">
-    <div class="cart__item">
-        <a href="#" class="cart__name">Awesome Product</a>
+    {% for cart in carts %}
+        <div class="cart__item">
+            <a href="{% url "catalog:product" cart.product.slug %}" class="cart__name">{{cart.product.name}}</a>
 
-        <div class="cart__controls">
-            <button class="cart__btn cart__btn--minus decrement" data-cart-id="" data-cart-change-url="/cart/decrement/">−</button>
-            <input type="text" class="cart__qty number" value="1" readonly>
-            <button class="cart__btn cart__btn--plus increment" data-cart-id="" data-cart-change-url="/cart/increment/">+</button>
+            <div class="cart__controls">
+                <button class="cart__btn cart__btn--minus decrement" data-cart-id="" data-cart-change-url="/cart/decrement/">−</button>
+                <input type="text" class="cart__qty number" value="{{cart.quantity}}" readonly>
+                <button class="cart__btn cart__btn--plus increment" data-cart-id="" data-cart-change-url="/cart/increment/">+</button>
+            </div>
+            <div class="cart__price-container">
+                <span class="cart__multiply">×</span>
+                <span class="cart__price">${{cart.product.sell_price}}</span>
+                <span class="cart__total">${{cart.product_price}}</span>
+            </div>
+
+            <a href="{% url "cart:remove" 1 %}" class="cart__remove remove-from-cart" data-cart-id="">
+                <img src="{% static 'img/icons/trash3-fill.png' %}" alt="Remove">
+            </a>
         </div>
-
-        <span class="cart__multiply">×</span>
-        <span class="cart__price">$100.00</span>
-        <span class="cart__total">$100.00</span>
-
-        <a href="{% url "cart:remove" 1 %}" class="cart__remove remove-from-cart" data-cart-id="">
-            <img src="{% static 'img/icons/trash3-fill.png' %}" alt="Remove">
-        </a>
-    </div>
+    {% endfor %}
 </div>
 <!-- Блок для промокода -->
 <div class="cart__promo-code">
@@ -27,7 +36,10 @@
 </div>
 <!-- Сумма корзины -->
 <div class="cart__summary">
-    <span>Total <strong>1</strong> item</span>
-    <p class="cart__total_without-discount"> $200 </p>
-    <strong class="cart__total">$100.00</strong>
+    <span>Total <strong>{{ carts.total_quantity }}</strong> item</span>
+    {% comment %} 
+    для промиков и скидок пользователя
+    <p class="cart__total_without-discount"> $200 </p> 
+    {% endcomment %}
+    <strong class="cart__total">${{ carts.total_price }}</strong>
 </div>

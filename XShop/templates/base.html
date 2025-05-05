@@ -1,5 +1,6 @@
 {% load static %}
 {% load goods_tags %}
+{% load carts_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,13 @@
 						</ul>
 					</div>
 					{% endif %}
-					<li><a href="{% url "user:users_cart" %}"><img src="{% static 'img/icons/cart.png' %}"></a></li>
+					<li class="header__cart-icon-wrapper"><a href="{% url "user:users_cart" %}">
+						<img src="{% static 'img/icons/cart.png' %}">
+						{% user_carts request as carts %}
+						{% if carts.total_quantity > 0 %}
+							<span class="header__cart-badge">{{ carts.total_quantity }}</span>
+						{% endif %}
+					</a></li>
 					<li><a href="
 						{% if user.is_authenticated %}
 							{% url "user:profile" %}
