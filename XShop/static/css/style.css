@@ -567,6 +567,7 @@ body {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%); /* Центрируем кнопку */
+  text-align: center;
 }
 
 .add-to-cart:hover {
