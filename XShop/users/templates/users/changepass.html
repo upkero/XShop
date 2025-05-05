@@ -7,28 +7,61 @@
 <div class="profile-edit-container">
 	<div class="profile-card profile-card--wide">
 		<h2 class="profile-title">Change Password</h2>
-
-		<form>
+		<form action="{% url "user:changepass" %}" method="post">
+			{% csrf_token %}
 			<div class="profile-group">
-				<label for="current-password">Current Password</label>
+				<label for="id_old_password">Current Password</label>
 				<div class="password-wrapper">
-					<input type="password" id="current-password" class="profile-input" placeholder="Enter your current password">
+					<input 
+					type="password" 
+					id="id_old_password" 
+					class="profile-input" 
+					name="old_password"
+					placeholder="Enter your current password"
+					required>
 					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
 				</div>
+				{% if form.old_password.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.old_password.errors }}
+					</div>
+				{% endif %}
 			</div>
 			<div class="profile-group">
-				<label for="new-password">New Password</label>
+				<label for="id_new_password1">New Password</label>
 				<div class="password-wrapper">
-					<input type="password" id="new-password" class="profile-input" placeholder="Enter your new password">
+					<input 
+					type="password" 
+					id="id_new_password1" 
+					class="profile-input" 
+					name="new_password1"
+					placeholder="Enter your new password"
+					required>
 					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
 				</div>
+				{% if form.new_password1.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.new_password1.errors }}
+					</div>
+				{% endif %}
 			</div>
 			<div class="profile-group">
-				<label for="confirm-password">Confirm New Password</label>
+				<label for="id_new_password2">Confirm New Password</label>
 				<div class="password-wrapper">
-					<input type="password" id="confirm-password" class="profile-input" placeholder="Confirm your new password">
+					<input 
+					type="password" 
+					id="id_new_password2" 
+					class="profile-input" 
+					name="new_password2"
+					placeholder="Confirm your new password"
+					required>
 					<span class="toggle-password" onclick="togglePassword(this)">🙉</span>
 				</div>
+				{% if form.new_password2.errors %}
+					<div class="notification-inline" style="margin-top: 10px;">
+						{{ form.new_password2.errors }}
+					</div>
+				{% endif %}
 			</div>
 
 			<button type="submit" class="profile-btn">Update Password</button>

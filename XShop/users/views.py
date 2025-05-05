@@ -1,4 +1,3 @@
-from email import message
 from django.contrib import auth, messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -6,7 +5,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
-from users.forms import ChangeAvatarForm, EditProfileForm, UserLoginForm, UserRegistrationForm
+from users.forms import ChangeAvatarForm, EditProfileForm, UserLoginForm, UserPasswordChangeForm, UserRegistrationForm
 
 
 def login(request):
@@ -80,8 +79,19 @@ def logout(request):
 
 @login_required
 def changepass(request):
+    if request.method == "POST":
+        form = UserPasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            auth.update_session_auth_hash(request, form.user)
+            messages.success(request, 'Password changed successfully.')
+            return redirect('user:changepass')
+    else:
+        form = UserPasswordChangeForm(user=request.user)
+    
+    
     context = {
-        
+        'form': form,
     }
     return render(request, 'users/changepass.html', context)
 

@@ -1,8 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.core.validators import FileExtensionValidator
-from django.core.exceptions import ValidationError
-from PIL import Image
+# from django.core.exceptions import ValidationError
+# from PIL import Image
 
 from users.models import User
 
@@ -84,3 +84,6 @@ class EditProfileForm(UserChangeForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.CharField()
+    
+class UserPasswordChangeForm(PasswordChangeForm):
+    pass
