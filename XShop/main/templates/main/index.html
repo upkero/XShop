@@ -75,7 +75,7 @@
 	<div class="products__container">
 		<div class="products__row">
 			{% for product in recommended_products %}
-			{% include "includes/product_card.html" %}
+			{% include "goods/includes/product_card.html" %}
 			{% endfor %}
 		</div>
 		<a href="{% url "catalog:index" %}">
