@@ -1110,8 +1110,10 @@ background-color: #a82e70;;
 }
 
 .notification--success {
-  border-left-color: #2ecc71;
-  box-shadow: 0 0 10px #2ecc71;
+  border-left-color: #C93789;
+  box-shadow: 0 0 10px #C93789;
+  /* border-left-color: #2ecc71;
+  box-shadow: 0 0 10px #2ecc71; */
 }
 
 .notification--warning {
