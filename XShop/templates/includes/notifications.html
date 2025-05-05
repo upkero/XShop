@@ -12,3 +12,23 @@
         </div>
     </div>
 {% endif %}
+
+
+<div class="notification-container">
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div id="notification" class="notification notification--success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+            {% if message.tags == 'warning' %}
+                <div id="notification" class="notification notification--warning" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+    <div id="jq-notification" class="notification notification--success" style="display: none;" role="alert"></div>
+    {% endif %}
+</div>

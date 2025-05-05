@@ -1,4 +1,5 @@
-from django.contrib import auth
+from email import message
+from django.contrib import auth, messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -17,6 +18,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
+                messages.success(request, f'Welcome back, {username}! You\'re now logged in.')
                 return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserLoginForm()
@@ -34,6 +36,7 @@ def registration(request):
             form.save()
             user = form.instance
             auth.login(request, user)
+            messages.success(request, f'Welcome, {user.username}! Your account has been created and you\'re now logged in.')
             return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserRegistrationForm()
@@ -57,6 +60,7 @@ def profile(request):
         form = ChangeAvatarForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, "Avatar updated successfully.")
             return redirect('user:profile')
     else:
         form = ChangeAvatarForm(instance=request.user)
@@ -69,6 +73,7 @@ def profile(request):
 
 @login_required
 def logout(request):
+    messages.success(request, f'Goodbye, {request.user.username}! You\'ve been signed out.')
     auth.logout(request)
     return redirect(reverse('main:index'))
 
@@ -87,6 +92,7 @@ def editprofile(request):
         form = EditProfileForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, "Profile updated successfully.")
             return HttpResponseRedirect(reverse('user:editprofile'))
     else:
         form = EditProfileForm(instance=request.user)
@@ -102,5 +108,6 @@ def editprofile(request):
 def delete_account(request):
     user = request.user
     logout(request)
+    messages.success(request, f'We’re sorry to see you go, { user.username }. Your account is now deleted.')
     user.delete()
     return redirect(reverse('main:index'))
