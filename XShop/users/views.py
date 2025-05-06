@@ -139,7 +139,20 @@ def editprofile(request):
 @require_POST
 @login_required
 def delete_account(request):
+    
+    password = request.POST.get('password')
+    
+    if not password:
+        messages.error(request, 'Password is required')
+        return redirect('user:profile')
+    
     user = request.user
+    
+    user_check = auth.authenticate(username=user.username, password=password)
+    if not user_check:
+        messages.error(request, 'Incorrect password')
+        return redirect('user:profile')
+    
     user.is_active = False
     user.save()
     logout(request)

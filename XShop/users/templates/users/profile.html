@@ -95,12 +95,29 @@
         <a href="{% url 'user:editprofile' %}" class="profile-fullwidth-btn">Edit Profile</a>
         <a href="{% url 'user:changepass' %}" class="profile-fullwidth-btn">Change Password</a>
         <a href="{% url 'user:logout' %}" class="profile-fullwidth-btn">Log Out</a>
-        <form action="{% url 'user:delete_account' %}" method="post" onsubmit="return confirm('Are you sure you want to delete your account?');">
-            {% csrf_token %}
-            <button type="submit" class="profile-fullwidth-btn profile-fullwidth-btn--danger">
-                Delete Account
-            </button>
-        </form>
+
+
+        {% comment %} <form action="{% url 'user:delete_account' %}" method="post" onsubmit="return confirm('Are you sure you want to delete your account?');">
+            {% csrf_token %} {% endcomment %}
+        <button type="submit" class="profile-fullwidth-btn profile-fullwidth-btn--danger" onclick="openDeleteModal()">
+            Delete Account
+        </button>
+        <div id="deleteModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Confirm Deletion</h3>
+                <form id="deleteForm" method="post" action="{% url 'user:delete_account' %}">
+                    {% csrf_token %}
+                    <label for="password">Enter your password:</label>
+                    <input type="password" name="password" required class="form-input">
+                    <div class="modal-actions">
+                        <button type="submit" class="modal-confirm">Confirm</button>
+                        <button type="button" class="modal-cancel" onclick="closeDeleteModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
     </div>
 </div>
 
@@ -130,5 +147,13 @@
             saveBtn.style.display = "none";
         }
     });
+
+    function openDeleteModal() {
+        document.getElementById("deleteModal").classList.remove("hidden");
+    }
+    function closeDeleteModal() {
+        document.getElementById("deleteModal").classList.add("hidden");
+    }
+        
 </script>
 {% endblock main %}
