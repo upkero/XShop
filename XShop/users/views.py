@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
+from carts.models import Cart
 from users.forms import ChangeAvatarForm, EditProfileForm, UserLoginForm, UserPasswordChangeForm, UserRegistrationForm
 
 
@@ -15,9 +16,20 @@ def login(request):
             username = request.POST['username']
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
+            
+            session_key = request.session.session_key
+            
             if user:
                 auth.login(request, user)
                 messages.success(request, f'Welcome back, {username}! You\'re now logged in.')
+                
+                if session_key:
+                    carts = Cart.objects.filter(session_key=session_key)
+                    carts.update(user=user)
+                    for cart in carts:
+                        cart.session_key = None
+                    Cart.objects.bulk_update(carts, ['session_key'])
+                
                 return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserLoginForm()
@@ -33,8 +45,19 @@ def registration(request):
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
+            
+            session_key = request.session.session_key
+            
             user = form.instance
             auth.login(request, user)
+            
+            if session_key:
+                    carts = Cart.objects.filter(session_key=session_key)
+                    carts.update(user=user)
+                    for cart in carts:
+                        cart.session_key = None
+                    Cart.objects.bulk_update(carts, ['session_key'])
+                    
             messages.success(request, f'Welcome, {user.username}! Your account has been created and you\'re now logged in.')
             return HttpResponseRedirect(reverse('main:index'))
     else:

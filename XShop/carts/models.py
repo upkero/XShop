@@ -34,4 +34,5 @@ class Cart(models.Model):
         return round(self.product.sell_price() * self.quantity, 2)
         
     def __str__(self):
-        return f'Cart {self.user.username} | Item {self.product.name} | Quantity {self.quantity}'
+        cart_name = self.user.username if self.user else str(self.session_key)[:8]
+        return f'Cart {cart_name} | Item {self.product.name} | Quantity {self.quantity}'
