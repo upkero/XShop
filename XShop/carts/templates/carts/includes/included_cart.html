@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Блок с товарами в корзине -->
-<div id="cart-items-container" class="cart__items cart__items_in-cart">
+<div class="cart__items cart__items_in-cart">
     {% for cart in carts %}
         <div class="cart__item">
             <a href="{% url "catalog:product" cart.product.slug %}" class="cart__name">{{cart.product.name}}</a>
@@ -17,17 +17,22 @@
                 <span class="cart__total">${{cart.product_price}}</span>
             </div>
 
-            <a href="{% url "cart:remove" %}" class="cart__remove remove-from-cart" data-cart-id="">
+            <a href="{% url "cart:remove" %}" 
+            class="cart__remove remove-from-cart" 
+            data-cart-id="{{cart.id}}">
+            {% csrf_token %}
                 <img src="{% static 'img/icons/trash3-fill.png' %}" alt="Remove">
             </a>
         </div>
     {% endfor %}
 </div>
+{% if carts.count %}
 <!-- Блок для промокода -->
 <div class="cart__promo-code">
     <input type="text" id="promo-code" class="cart__promo-input" placeholder="Promo Code">
     <button class="cart__promo-btn" id="apply-promo-code">Apply</button>
 </div>
+{% endif %}
 <!-- Сумма корзины -->
 <div class="cart__summary">
     <span>Total <strong>{{ carts.total_quantity }}</strong> item</span>
