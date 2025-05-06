@@ -8,7 +8,7 @@ import random
 
 def index(request):
 
-    products = list(Products.objects.filter(is_active=True))
+    products = list(Products.objects.filter(is_active=True, category__is_active=True))
     random.shuffle(products)
     recommended_products = products[:4]
     

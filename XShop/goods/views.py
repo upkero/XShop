@@ -23,9 +23,9 @@ def catalog(request, category_slug=False):
     if query:
         products = q_search(query)
     elif not category_slug:
-        products = Products.objects.filter(is_active=True)
+        products = Products.objects.filter(is_active=True, category__is_active=True)
     else:
-        products = Products.objects.filter(is_active=True, category__slug=category_slug)
+        products = Products.objects.filter(is_active=True, category__is_active=True, category__slug=category_slug)
 
     if order_by and order_by != "default":
         products = products.order_by(order_by)
@@ -64,7 +64,7 @@ def catalog(request, category_slug=False):
 
 
 def product(request, product_slug):
-    product = Products.objects.filter(slug=product_slug, is_active=True).first()
+    product = Products.objects.filter(slug=product_slug, is_active=True, category__is_active=True).first()
 
     context = {
         "product": product,

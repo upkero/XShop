@@ -1,4 +1,3 @@
-from winreg import QueryReflectionKey
 from django.db.models import Q, Value
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector, SearchHeadline
 
@@ -8,7 +7,7 @@ from goods.models import Products
 def q_search(query):
     
     if query.isdigit() and len(query) <= 5:
-        return Products.objects.filter(id=int(query))
+        return Products.objects.filter(id=int(query), is_active=True, category__is_active=True)
     
     vector = SearchVector("name", "description")
     search_query = SearchQuery(query)
@@ -22,7 +21,7 @@ def q_search(query):
     result = (
         Products.objects
         .annotate(rank=SearchRank(vector, search_query, normalization=normalization))
-        .filter(rank__gt=0)
+        .filter(rank__gt=0, is_active=True, category__is_active=True)
         .order_by("-rank")
     )
     
