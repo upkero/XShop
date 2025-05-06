@@ -24,8 +24,8 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 - ✅ **Users (Registration, Login, Profile)**
 - ⬜ **Customer Reviews System**
 - ⬜ **Favorites System**
-- 🔄 **Cart Management** *(in progress)*
-- ⬜ **Order System**
+- ✅ **Cart Management**
+- 🔄 **Order System** *(in progress)*
 - ⬜ **Promo Codes Support**
 - ⬜ **Payment System Integration**
 - ⬜ **Receipt Sending System**
