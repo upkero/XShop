@@ -19,7 +19,7 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 ## 🚧 Project Progress
 
 - ✅ **Start Project**
-- ⏸️ **Catalog** *(on pause)*
+- ✅ **Catalog**
 - ✅ **Categories of Products**
 - ✅ **Users (Registration, Login, Profile)**
 - ⬜ **Customer Reviews System**
