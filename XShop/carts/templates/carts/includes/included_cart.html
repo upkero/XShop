@@ -7,9 +7,19 @@
             <a href="{% url "catalog:product" cart.product.slug %}" class="cart__name">{{cart.product.name}}</a>
 
             <div class="cart__controls">
-                <button class="cart__btn cart__btn--minus decrement" data-cart-id="" data-cart-change-url="/cart/decrement/">−</button>
+                <button class="cart__btn cart__btn--minus decrement" 
+                data-cart-id="{{cart.id}}" 
+                data-cart-change-url="{% url "cart:change" %}">
+                    {% csrf_token %}    
+                    −
+                </button>
                 <input type="text" class="cart__qty number" value="{{cart.quantity}}" readonly>
-                <button class="cart__btn cart__btn--plus increment" data-cart-id="" data-cart-change-url="/cart/increment/">+</button>
+                <button class="cart__btn cart__btn--plus increment" 
+                data-cart-id="{{cart.id}}" 
+                data-cart-change-url="{% url "cart:change" %}">
+                    {% csrf_token %}
+                    +
+                </button>
             </div>
             <div class="cart__price-container">
                 <span class="cart__multiply">×</span>
