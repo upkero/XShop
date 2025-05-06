@@ -140,9 +140,11 @@ def editprofile(request):
 @login_required
 def delete_account(request):
     user = request.user
+    user.is_active = False
+    user.save()
     logout(request)
-    messages.success(request, f'We’re sorry to see you go, { user.username }. Your account is now deleted.')
-    user.delete()
+    messages.success(request, f'We’re sorry to see you go, { user.username }. Your account has been deactivated.')
+    # user.delete()
     return redirect(reverse('main:index'))
 
 
