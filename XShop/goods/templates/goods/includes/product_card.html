@@ -36,5 +36,11 @@
             ${{ product.sell_price }}
         </div>
     </a>
-    <a href="{% url "cart:add" product.slug %}" class="add-to-cart">Add to Cart</a> <!-- Кнопка добавления в корзину -->			
+    <a href="{% url "cart:add" %}" 
+    class="product__add-to-cart add-to-cart" 
+    style="color: #E6C5C8;"
+    data-product-id="{{product.id}}">
+        {% csrf_token %}
+        Add to Cart
+    </a> <!-- Кнопка добавления в корзину -->			
 </div>

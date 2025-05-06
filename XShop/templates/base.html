@@ -47,9 +47,7 @@
 					<li class="header__cart-icon-wrapper"><a href="{% url "user:users_cart" %}">
 						<img src="{% static 'img/icons/cart.png' %}">
 						{% user_carts request as carts %}
-						{% if carts.total_quantity > 0 %}
-							<span class="header__cart-badge">{{ carts.total_quantity }}</span>
-						{% endif %}
+						<span class="header__cart-badge" id="goods-in-cart-count">{{ carts.total_quantity }}</span>
 					</a></li>
 					<li><a href="
 						{% if user.is_authenticated %}
@@ -132,7 +130,6 @@
 	</div>
 <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery/jquery-3.7.0.min.js' %}"></script>
-<script src="{% static 'js/jquery-events.js' %}"></script>
 <script src="{% static 'js/jquery-ajax.js' %}"></script>
 </body>
 </html>

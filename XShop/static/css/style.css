@@ -249,6 +249,7 @@ body {
   font-weight: bold;
   -webkit-filter: drop-shadow(0 0 1px #C05CC3);
   filter: drop-shadow(0 0 1px #C05CC3);
+  display: none;
 }
 
 .main {
@@ -573,7 +574,7 @@ body {
   text-decoration: line-through;
 }
 
-.add-to-cart {
+.product__add-to-cart {
   background-color: #C93789;
   color: #E6C5C8;
   padding: 12px 24px;
@@ -592,7 +593,7 @@ body {
   text-align: center;
 }
 
-.add-to-cart:hover {
+.product__add-to-cart:hover {
   background-color: #a82e70;
 }
 
