@@ -59,7 +59,7 @@ class Order(models.Model):
         verbose_name_plural = "Orders"
 
     def __str__(self):
-        return f"Order №{self.pk} | Иuyer {self.user.first_name} {self.user.last_name}"
+        return f"Order №{self.pk} | Buyer {self.user.first_name} {self.user.last_name}"
 
 
 class OrderItem(models.Model):
