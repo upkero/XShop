@@ -13,7 +13,6 @@ ENV/
 .env
 /staticfiles/
 media/
-src/django-debug-toolbar/
 *.log
 *.pot
 *.pyc
