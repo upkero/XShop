@@ -25,7 +25,7 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 - ⬜ **Customer Reviews System**
 - ⬜ **Favorites System**
 - ✅ **Cart Management**
-- 🔄 **Order System** *(in progress)*
+- ✅ **Order System** 
 - ⬜ **Promo Codes Support**
 - ⬜ **Payment System Integration**
 - ⬜ **Receipt Sending System**
@@ -33,7 +33,7 @@ The project is designed with a clean dark theme and focuses on simplicity, perfo
 - ⬜ **Recommendation System (Redis or ML)**
 - ⬜ **REST API Integration**
 - ⬜ **JSON Serialization and Networking**
-
+<!-- 🔄*(in progress)* -->
 
 ## 🧑‍💻 Tech Stack
 
