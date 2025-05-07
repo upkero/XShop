@@ -10,7 +10,7 @@
     {% include "carts/includes/included_cart.html" %}
     </div>
     {% if carts.count %}
-        <a href="#" class="products__btn">Proceed to Checkout</a>
+        <a href="{% url "order:create_order" %}" class="products__btn">Proceed to Checkout</a>
     {% endif %}
 </div>
 {% endblock main %}

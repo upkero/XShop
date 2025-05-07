@@ -1217,8 +1217,8 @@ background-color: #a82e70;;
 .cart__items_in-cart{
   max-height: 600px;
 }
-.cart__items_in-order{
-  height: 70%;
+.checkout-container .cart__items_in-cart{
+  height: 400px;
 }
 .cart__items::-webkit-scrollbar {
   width: 8px;
@@ -1258,6 +1258,11 @@ background-color: #a82e70;;
   text-shadow: 0 0 1px #C05CC3;
   text-decoration: none;
 }
+
+.checkout-container .cart__name {
+  min-width: 100%;
+}
+
 .cart a {
   color: #E6C5C8;
 }
@@ -2081,6 +2086,13 @@ background-color: #a82e70;;
   background-color: #2a2a2a;
   color: #E6C5C8;
 }
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #FF85C1;
+  box-shadow: 0 0 8px rgba(255,133,193,0.5);
+}
+
 .form-group textarea {
   max-height: 54px;
   max-width: 440px;
