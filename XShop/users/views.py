@@ -31,6 +31,9 @@ def login(request):
                     for cart in carts:
                         cart.session_key = None
                     Cart.objects.bulk_update(carts, ['session_key'])
+                    
+                if request.POST.get('next', None):
+                    return HttpResponseRedirect(request.POST.get('next'))
                 
                 return HttpResponseRedirect(reverse('main:index'))
     else:
