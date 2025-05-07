@@ -49,42 +49,29 @@
         <div class="order-history-card">
             <h3 class="order-history-title">Order History</h3>
             <div class="order-history">
-
-            <details class="order-item" open>
-                <summary>Order #256 — Sep 09, 2023 | Status: <strong>Processing</strong></summary>
-                <div class="order-details">
-                    <table class="order-table">
-                        <thead>
-                            <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="#">White tea and sugar</a></td>
-                                <td>1</td><td>$255.00</td><td>$255.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p class="order-total">Total: $255.00</p>
-                </div>
-            </details>
-
-            <details class="order-item">
-                <summary>Order #248 — Aug 01, 2023 | Status: <strong>Completed</strong></summary>
-                <div class="order-details">
-                    <table class="order-table">
-                        <thead>
-                            <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="#">Black tea</a></td>
-                                <td>2</td><td>$30.00</td><td>$60.00</td>
-                            </tr>
-                    </tbody>
-                    </table>
-                    <p class="order-total">Total: $60.00</p>
-                </div>
-            </details>
+                {% for order in orders %}
+                    <details class="order-item" {% if order == orders.0 %}open{% endif %}>
+                        <summary>Order #{{order.id}} — {{order.created_timestamp}} | Status: <strong>{{order.status}}</strong></summary>
+                        <div class="order-details">
+                            <table class="order-table">
+                                <thead>
+                                    <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.orderitem_set.all %}
+                                        <tr>
+                                            <td><a href="{% url "goods:product" item.product.slug %}">{{item.product.name}}</a></td>
+                                            <td>{{ item.quantity}}</td>
+                                            <td>${{ item.price }}</td>
+                                            <td>${{ item.product_price}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <p class="order-total">Total: ${{order.orderitem_set.total_price}}</p>
+                        </div>
+                    </details>
+                {% endfor %}
             </div>
         </div>
     </div>
