@@ -16,21 +16,54 @@
   <!-- ORDER FORM SECTION -->
   <div class="checkout-form">
     <h2 class="cart__title">Delivery Details</h2>
-    <form>
+    <form action="{% url "order:create_order" %}" method="post">
+      {% csrf_token %}
       <div class="checkout-grid">
         <div class="form-group">
-          <label for="firstName">First Name*</label>
-          <input type="text" id="firstName" placeholder="Your First Name" required>
+          <label for="id_first_name">First Name*</label>
+          <input type="text" 
+            id="id_first_name" 
+            placeholder="Your First Name"
+            name="first_name" 
+            value = "{% if form.first_name.value %}{{form.first_name.value}}{% endif %}"
+            required>
+            {% if form.first_name.errors %}
+                <div class="notification-inline" style="margin-top: 10px;">
+                    {{ form.first_name.errors }}
+                </div>
+            {% endif %}
         </div>
         <div class="form-group">
-          <label for="lastName">Last Name*</label>
-          <input type="text" id="lastName" placeholder="Your Last Name" required>
+          <label for="id_last_name">Last Name*</label>
+          <input type="text" 
+            id="id_last_name" 
+            placeholder="Your Last Name" 
+            name="last_name" 
+            value = "{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"
+            required>
+            {% if form.last_name.errors %}
+                <div class="notification-inline" style="margin-top: 10px;">
+                    {{ form.last_name.errors }}
+                </div>
+            {% endif %}
         </div>
         <div class="form-group">
-          <label for="phone">Phone Number*</label>
-          <input type="text" id="phone" placeholder="Your Phone" required>
+          <label for="id_phone_number">Phone Number*</label>
+          <input type="text" 
+            id="id_phone_number" 
+            placeholder="Your Phone" 
+            name="phone_number" 
+            value = "{% if form.phone_number.value %}{{form.phone_number.value}}{% endif %}"
+            required>
+            {% if form.phone_number.errors %}
+                <div class="notification-inline" style="margin-top: 10px;">
+                    {{ form.phone_number.errors }}
+                </div>
+            {% endif %}
         </div>
-        <div class="form-group">
+
+
+        {% comment %} <div class="form-group">
           <label for="delivery">Delivery Method</label>
           <div class="radio-group">
               <label class="custom-radio" for="delivery_radio">
@@ -42,32 +75,99 @@
                 <span class="radio-mark"></span>Pickup
               </label>
           </div>
+        </div> {% endcomment %}
+        <div class="form-group">
+          <label class="form-label">Delivery Method</label>
+          <div class="radio-group">
+            <input type="radio" name="requires_delivery" id="id_requires_delivery" value="1" checked class="custom-radio-input">
+            <label class="custom-radio-label" for="id_requires_delivery">
+              <span class="radio-mark"></span>Delivery
+            </label>
+        
+            <input type="radio" name="requires_delivery" id="id_requires_delivery" value="0" class="custom-radio-input">
+            <label class="custom-radio-label" for="id_requires_delivery">
+              <span class="radio-mark"></span>Pickup
+            </label>
+          </div>
         </div>
+
+
       </div>
+
       <div class="checkout-grid checkout-address" id="deliveryAddressField">
         <div class="form-group">
-          <label for="city">City*</label>
-          <input type="text" id="city" placeholder="Your City" required>
+          <label for="id_delivery_address_city">City*</label>
+          <input type="text" 
+            id="id_delivery_address_city" 
+            placeholder="Your City" 
+            name="delivery_address_city"
+            value = "{% if form.delivery_address_city.value %}{{form.delivery_address_city.value}}{% endif %}"
+            >
+          {% if form.delivery_address_city.errors %}
+          <div class="notification-inline" style="margin-top: 10px;">
+              {{ form.delivery_address_city.errors }}
+          </div>
+          {% endif %}
         </div>
         <div class="form-group">
-          <label for="street">Street*</label>
-          <input type="text" id="street" placeholder="Your Street" required>
+          <label for="id_delivery_address_street">Street*</label>
+          <input type="text" 
+            id="id_delivery_address_street" 
+            placeholder="Your Street" 
+            name="delivery_address_street"
+            value = "{% if form.delivery_address_street.value %}{{form.delivery_address_street.value}}{% endif %}"
+            >
+          {% if form.delivery_address_street.errors %}
+          <div class="notification-inline" style="margin-top: 10px;">
+              {{ form.delivery_address_street.errors }}
+          </div>
+          {% endif %}
         </div>
         <div class="form-group">
-          <label for="house">House*</label>
-          <input type="text" id="house" placeholder="Your House" required>
+          <label for="id_delivery_address_house">House*</label>
+          <input type="text" 
+            id="id_delivery_address_house" 
+            placeholder="Your House" 
+            name="delivery_address_house"
+            value = "{% if form.delivery_address_house.value %}{{form.delivery_address_house.value}}{% endif %}"
+            >
+          {% if form.delivery_address_house.errors %}
+          <div class="notification-inline" style="margin-top: 10px;">
+              {{ form.delivery_address_house.errors }}
+          </div>
+          {% endif %}
         </div>
         <div class="form-group">
-          <label for="apartment">Apartment</label>
-          <input type="text" id="apartment" placeholder="Your Apartment">
+          <label for="id_delivery_address_apartment">Apartment</label>
+          <input type="text" 
+            id="id_delivery_address_apartment" 
+            placeholder="Your Apartment" 
+            name="delivery_address_apartment"
+            value = "{% if form.delivery_address_apartment.value %}{{form.delivery_address_apartment.value}}{% endif %}"
+            >
+          {% if form.delivery_address_apartment.errors %}
+          <div class="notification-inline" style="margin-top: 10px;">
+              {{ form.delivery_address_apartment.errors }}
+          </div>
+          {% endif %}
         </div>
         <div class="form-group full">
-          <label for="notes">Notes</label>
-          <textarea id="notes" rows="2" placeholder="Optional notes..."></textarea>
+          <label for="id_delivery_notes">Notes</label>
+          <textarea id="id_delivery_notes" 
+            rows="2" 
+            placeholder="Optional notes..." 
+            name="delivery_notes"
+            value = "{% if form.delivery_notes.value %}{{form.delivery_notes.value}}{% endif %}"
+            ></textarea>
+          {% if form.delivery_notes.errors %}
+          <div class="notification-inline" style="margin-top: 10px;">
+              {{ form.delivery_notes.errors }}
+          </div>
+          {% endif %}
         </div>
       </div>
 
-      <div class="form-group payment-method">
+      {% comment %} <div class="form-group payment-method">
         <label>Payment Method</label>
         <div class="radio-group">
           <label class="custom-radio" for="pay_online_radio">
@@ -82,6 +182,22 @@
           <span class="radio-mark"></span>Upon Receipt
           </label>
 
+        </div>
+      </div> {% endcomment %}
+
+      <div class="form-group payment-method">
+        <label class="form-label">Payment Method</label>
+        <div class="radio-group">
+          <input type="radio" name="payment_on_get" id="id_payment_on_get" value="0" checked class="custom-radio-input">
+          <label class="custom-radio-label" for="id_payment_on_get">Card Online</label>
+      
+          <input type="radio" name="payment_on_get" id="id_payment_on_get" value="1" class="custom-radio-input">
+          <label class="custom-radio-label" for="id_payment_on_get">Upon Receipt</label>
+          {% if form.payment_on_get.errors %}
+          <div class="notification-inline" style="margin-top: 10px;">
+              {{ form.payment_on_get.errors }}
+          </div>
+          {% endif %}
         </div>
       </div>
 
