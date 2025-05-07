@@ -229,4 +229,24 @@ $(document).ready(function () {
             $("#deliveryAddressField").hide();
         }
     });
+
+//   document.addEventListener("DOMContentLoaded", function () {
+//     const deliveryRadios = document.querySelectorAll('input[name="requires_delivery"]');
+//     const addressField = document.getElementById("deliveryAddressField");
+
+//     function toggleAddressField() {
+//       const selected = document.querySelector('input[name="requires_delivery"]:checked').value;
+//       if (selected === "1") {
+//         addressField.classList.remove("hidden");
+//       } else {
+//         addressField.classList.add("hidden");
+//       }
+//     }
+
+//      toggleAddressField();
+
+//     deliveryRadios.forEach(radio => {
+//       radio.addEventListener("change", toggleAddressField);
+//     });
+//   });
 });

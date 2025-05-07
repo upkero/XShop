@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout{% endblock title %}
+
+{% block main %}
+<div class="checkout-container">
+  <!-- CART SECTION -->
+  <div class="checkout-cart">
+    <h2 class="cart__title">Your Order</h2>
+    
+    {% include "carts/includes/included_cart.html" %}
+
+
+  <!-- ORDER FORM SECTION -->
+  <div class="checkout-form">
+    <h2 class="cart__title">Delivery Details</h2>
+    <form>
+      <div class="checkout-grid">
+        <div class="form-group">
+          <label for="firstName">First Name*</label>
+          <input type="text" id="firstName" placeholder="Your First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name*</label>
+          <input type="text" id="lastName" placeholder="Your Last Name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number*</label>
+          <input type="text" id="phone" placeholder="Your Phone" required>
+        </div>
+        <div class="form-group">
+          <label>Delivery Method</label>
+          <div class="radio-group">
+            <label class="custom-radio" for="requires_delivery">
+            <input type="radio" name="requires_delivery" id="requires_delivery" value="1" checked>
+            <span class="radio-mark"></span>Delivery
+            </label>
+
+            <label class="custom-radio" for="requires_delivery">
+            <input type="radio" name="requires_delivery" id="requires_delivery" value="0">
+            <span class="radio-mark"></span>Pickup
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="checkout-grid checkout-address" id="deliveryAddressField">
+        <div class="form-group">
+          <label for="city">City*</label>
+          <input type="text" id="city" placeholder="Your City" required>
+        </div>
+        <div class="form-group">
+          <label for="street">Street*</label>
+          <input type="text" id="street" placeholder="Your Street" required>
+        </div>
+        <div class="form-group">
+          <label for="house">House*</label>
+          <input type="text" id="house" placeholder="Your House" required>
+        </div>
+        <div class="form-group">
+          <label for="apartment">Apartment</label>
+          <input type="text" id="apartment" placeholder="Your Apartment">
+        </div>
+        <div class="form-group full">
+          <label for="notes">Notes</label>
+          <textarea id="notes" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-group payment-method">
+        <label>Payment Method</label>
+        <div class="radio-group">
+          <label class="custom-radio" for="id_payment_on_get">
+
+          <input type="radio" name="payment_on_get" id="id_payment_on_get" value="0" checked>
+          <span class="radio-mark"></span>Card Online
+          </label>
+
+          <label class="custom-radio" for="id_payment_on_get">
+
+          <input type="radio" name="payment_on_get" id="id_payment_on_get" value="1">
+          <span class="radio-mark"></span>Upon Receipt
+          </label>
+
+        </div>
+      </div>
+
+      <button type="submit" class="checkout-btn-submit">Place Order</button>
+    </form>
+  </div>
+</div>
+{% endblock main %}
