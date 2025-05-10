@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView
 
 from goods.models import Categories, Products
 from goods.utils import q_search
@@ -9,7 +10,7 @@ from goods.utils import q_search
 def catalog(request, category_slug=False):
 
     try:
-        page = int(request.GET.get('page', 1))
+        page = int(request.GET.get("page", 1))
     except ValueError:
         page = 1
 
@@ -26,7 +27,9 @@ def catalog(request, category_slug=False):
     elif not category_slug:
         products = Products.objects.filter(is_active=True, category__is_active=True)
     else:
-        products = Products.objects.filter(is_active=True, category__is_active=True, category__slug=category_slug)
+        products = Products.objects.filter(
+            is_active=True, category__is_active=True, category__slug=category_slug
+        )
         if not products.exists():
             raise Http404()
 
@@ -51,8 +54,8 @@ def catalog(request, category_slug=False):
         if start == 1:
             end = min(total_pages, start + 2)
         elif end == total_pages:
-            start = max(1, end - 2)    
-    
+            start = max(1, end - 2)
+
     context = {
         "products": current_page,
         "slug_url": category_slug,
@@ -66,16 +69,16 @@ def catalog(request, category_slug=False):
     return render(request, "goods/catalog.html", context=context)
 
 
-def product(request, product_slug):
-    product = Products.objects.filter(slug=product_slug, is_active=True, category__is_active=True)
+class ProductView(DetailView):
 
-    if not product.exists():
-        raise Http404()
-    else:
-        product = product.first()
-        
-    context = {
-        "product": product,
-    }
+    template_name = "goods/product.html"
+    slug_url_kwarg = "product_slug"
+    context_object_name = "product"
 
-    return render(request, "goods/product.html", context=context)
+    def get_object(self, queryset=...):
+        return get_object_or_404(
+            Products,
+            slug=self.kwargs.get(self.slug_url_kwarg),
+            is_active=True,
+            category__is_active=True
+        )
