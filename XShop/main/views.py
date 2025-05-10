@@ -23,8 +23,8 @@ class AboutView(TemplateView):
     template_name = 'main/about.html'
 
 
-def contact(request):
-    return render(request, 'main/contact.html')
+class ContactView(TemplateView):
+    template_name = 'main/contact.html'
 
 
 def delivery(request):
