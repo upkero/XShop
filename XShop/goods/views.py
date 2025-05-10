@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.http import Http404
 from django.shortcuts import render
 
 from goods.models import Categories, Products
@@ -26,6 +27,8 @@ def catalog(request, category_slug=False):
         products = Products.objects.filter(is_active=True, category__is_active=True)
     else:
         products = Products.objects.filter(is_active=True, category__is_active=True, category__slug=category_slug)
+        if not products.exists():
+            raise Http404()
 
     if order_by and order_by != "default":
         products = products.order_by(order_by)
@@ -60,14 +63,19 @@ def catalog(request, category_slug=False):
     if category_slug:
         context["category"] = Categories.objects.get(slug=category_slug)
 
-    return render(request, "goods/catalog.html", context)
+    return render(request, "goods/catalog.html", context=context)
 
 
 def product(request, product_slug):
-    product = Products.objects.filter(slug=product_slug, is_active=True, category__is_active=True).first()
+    product = Products.objects.filter(slug=product_slug, is_active=True, category__is_active=True)
 
+    if not product.exists():
+        raise Http404()
+    else:
+        product = product.first()
+        
     context = {
         "product": product,
     }
 
-    return render(request, "goods/product.html", context)
+    return render(request, "goods/product.html", context=context)
