@@ -27,8 +27,8 @@ class ContactView(TemplateView):
     template_name = 'main/contact.html'
 
 
-def delivery(request):
-    return render(request, 'main/delivery.html')
+class DeliveryView(TemplateView):
+    template_name = 'main/delivery.html'
 
 
 def policy(request):
