@@ -18,8 +18,8 @@
 				<option value="default" {% if request.GET.order_by == 'default' or not request.GET.order_by %}selected{% endif %}>Default</option>
 				<option value="strength" {% if request.GET.order_by == 'strength' %}selected{% endif %}>Strength ↑</option>
 				<option value="-strength" {% if request.GET.order_by == '-strength' %}selected{% endif %}>Strength ↓</option>
-				<option value="price" {% if request.GET.order_by == 'price' %}selected{% endif %}>Price ↑</option>
-				<option value="-price" {% if request.GET.order_by == '-price' %}selected{% endif %}>Price ↓</option>
+				<option value="sell_price" {% if request.GET.order_by == 'sell_price' %}selected{% endif %}>Price ↑</option>
+				<option value="-sell_price" {% if request.GET.order_by == '-sell_price' %}selected{% endif %}>Price ↓</option>
 				</select>
 			</div>
 		</div>
@@ -95,10 +95,10 @@
 			<nav class="catalog__pagination" aria-label="Page navigation">
 				<ul class="catalog__pagination-list">
 					<div class="catalog__pagination-wrapper">
-						<li class="catalog__page-item {% if not products.has_previous %}disabled{% endif %}">
+						<li class="catalog__page-item {% if not page_obj.has_previous %}disabled{% endif %}">
 							<a class="catalog__page-link" href="
-							{% if products.has_previous %}
-								?{% change_params page=products.previous_page_number %}
+							{% if page_obj.has_previous %}
+								?{% change_params page=page_obj.previous_page_number %}
 							{% else %}
 								#
 							{% endif %}
@@ -106,16 +106,16 @@
 						</li>
 
 						{% for page in page_range_start|to:page_range_end %}
-							<li class="catalog__page-item {% if products.number == page %} active{% endif %}">
+							<li class="catalog__page-item {% if page_obj.number == page %} active{% endif %}">
 								<a class="catalog__page-link" href="?{% change_params page=page %}">{{ page }}</a>
 							</li>
 						{% endfor %}
 
 						
-						<li class="catalog__page-item {% if not products.has_next %}disabled{% endif %}">
+						<li class="catalog__page-item {% if not page_obj.has_next %}disabled{% endif %}">
 							<a class="catalog__page-link" href="
-							{% if products.has_next %}
-								?{% change_params page=products.next_page_number %}
+							{% if page_obj.has_next %}
+								?{% change_params page=page_obj.next_page_number %}
 							{% else %}
 								#
 							{% endif %}

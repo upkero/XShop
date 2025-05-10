@@ -33,7 +33,7 @@
                     ${{ product.price }}
                 </p>
             {% endif %}
-            ${{ product.sell_price }}
+            ${{ product.sell_price|floatformat:2 }}
         </div>
     </a>
     <a href="{% url "cart:add" %}" 
