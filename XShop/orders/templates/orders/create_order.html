@@ -16,7 +16,7 @@
   <!-- ORDER FORM SECTION -->
   <div class="checkout-form">
     <h2 class="cart__title">Delivery Details</h2>
-    <form action="{% url "order:create_order" %}" method="post">
+    <form action="{% url "order:create_order" %}" method="post" id="create_order_form">
       {% csrf_token %}
       <div class="checkout-grid">
         <div class="form-group">
@@ -51,7 +51,7 @@
           <label for="id_phone_number">Phone Number*</label>
           <input type="text" 
             id="id_phone_number" 
-            placeholder="Your Phone" 
+            placeholder="(000) 000-0000" 
             name="phone_number" 
             value = "{% if form.phone_number.value %}{{form.phone_number.value}}{% endif %}"
             required>
@@ -60,6 +60,9 @@
                     {{ form.phone_number.errors }}
                 </div>
             {% endif %}
+            <div class="notification-inline" style="margin-top: 10px; display: none;">
+              Invalid phone number format
+            </div>
         </div>
 
 
