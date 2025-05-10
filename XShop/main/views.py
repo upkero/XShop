@@ -35,8 +35,8 @@ class PolicyView(TemplateView):
     template_name = 'main/policy.html'
 
 
-def terms(request):
-    return render(request, 'main/terms.html')
+class TermsView(TemplateView):
+    template_name = 'main/terms.html'
 
 
 def ordandret(request):
