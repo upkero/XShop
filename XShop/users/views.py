@@ -26,6 +26,9 @@ def login(request):
                 messages.success(request, f'Welcome back, {username}! You\'re now logged in.')
                 
                 if session_key:
+                    forgot_carts = Cart.objects.filter(user=user)
+                    if forgot_carts.exists():
+                        forgot_carts.delete()
                     carts = Cart.objects.filter(session_key=session_key)
                     carts.update(user=user)
                     for cart in carts:
