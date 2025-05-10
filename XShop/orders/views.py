@@ -56,7 +56,7 @@ def create_order(request):
                 
             except ValidationError as e:
                 messages.warning(request, str(e))
-                return redirect('cart:order')
+                return redirect('order:create_order')
         
     else:
         initial = {
