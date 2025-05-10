@@ -31,8 +31,8 @@ class DeliveryView(TemplateView):
     template_name = 'main/delivery.html'
 
 
-def policy(request):
-    return render(request, 'main/policy.html')
+class PolicyView(TemplateView):
+    template_name = 'main/policy.html'
 
 
 def terms(request):
