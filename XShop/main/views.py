@@ -39,6 +39,6 @@ class TermsView(TemplateView):
     template_name = 'main/terms.html'
 
 
-def ordandret(request):
-    return render(request, 'main/ordandret.html')
+class OrdandretView(TemplateView):
+    template_name = 'main/ordandret.html'
 
