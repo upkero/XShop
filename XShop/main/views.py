@@ -19,8 +19,8 @@ class IndexView(TemplateView):
         return context
 
 
-def about(request):
-    return render(request, 'main/about.html')
+class AboutView(TemplateView):
+    template_name = 'main/about.html'
 
 
 def contact(request):
