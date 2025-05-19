@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
+from django.views.generic import CreateView
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
@@ -41,33 +42,26 @@ class UserLoginView(LoginView):
             return HttpResponseRedirect(self.get_success_url())
 
 
-def registration(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            
-            session_key = request.session.session_key
-            
-            user = form.instance
-            auth.login(request, user)
-            
-            if session_key:
-                    carts = Cart.objects.filter(session_key=session_key)
-                    carts.update(user=user)
-                    for cart in carts:
-                        cart.session_key = None
-                    Cart.objects.bulk_update(carts, ['session_key'])
-                    
-            messages.success(request, f'Welcome, {user.username}! Your account has been created and you\'re now logged in.')
-            return HttpResponseRedirect(reverse('main:index'))
-    else:
-        form = UserRegistrationForm()
+class UserRegistrationView(CreateView):
+    template_name = 'users/registr.html'
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy('user:profile')   
+    
+    def form_valid(self, form):
+        session_key = self.request.session.session_key
+        user = form.instance
         
-    context = {
-        'form': form
-    }
-    return render(request, 'users/registr.html', context)
+        if user:
+            form.save()
+            auth.login(self.request, user)
+            if session_key:
+                carts = Cart.objects.filter(session_key=session_key)
+                carts.update(user=user)
+                for cart in carts:
+                    cart.session_key = None
+                Cart.objects.bulk_update(carts, ['session_key'])
+            messages.success(self.request, f'Welcome, {user.username}! Your account has been created and you\'re now logged in.')
+            return HttpResponseRedirect(self.success_url)
 
 
 def forgotpass(request):
