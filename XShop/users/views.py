@@ -1,10 +1,11 @@
 from django.contrib import auth, messages
 from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, FormView, TemplateView, UpdateView
@@ -134,29 +135,28 @@ class UserEditProfileView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-@require_POST
-@login_required
-def delete_account(request):
-    
-    password = request.POST.get('password')
-    
-    if not password:
-        messages.error(request, 'Password is required')
-        return redirect('user:profile')
-    
-    user = request.user
-    
-    user_check = auth.authenticate(username=user.username, password=password)
-    if not user_check:
-        messages.error(request, 'Incorrect password')
-        return redirect('user:profile')
-    
-    user.is_active = False
-    user.save()
-    auth.logout(request)
-    messages.success(request, f'We’re sorry to see you go, { user.username }. Your account has been deactivated.')
-    # user.delete()
-    return redirect(reverse('main:index'))
+@method_decorator(require_POST, name='dispatch')
+class UserDeleteAccountView(LoginRequiredMixin, View):
+    def post(self, request):
+        password = request.POST.get('password')
+
+        if not password:
+            messages.error(request, 'Password is required')
+            return redirect('user:profile')
+
+        user = request.user
+        user_check = auth.authenticate(username=user.username, password=password)
+
+        if not user_check:
+            messages.error(request, 'Incorrect password')
+            return redirect('user:profile')
+
+        user.is_active = False
+        user.save()
+        auth.logout(request)
+        messages.success(request, f'We’re sorry to see you go, {user.username}. Your account has been deactivated.')
+
+        return redirect(reverse('main:index'))
 
 
 class UserCartView(TemplateView):
