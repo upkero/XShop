@@ -7,11 +7,12 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, TemplateView, UpdateView
+from django.views.generic import CreateView, FormView, TemplateView, UpdateView
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
-from users.forms import ChangeAvatarForm, EditProfileForm, UserLoginForm, UserPasswordChangeForm, UserRegistrationForm
+from users.forms import ChangeAvatarForm, EditProfileForm, UserLoginForm, UserRegistrationForm
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class UserLoginView(LoginView):
@@ -103,23 +104,21 @@ class UserLogoutView(LoginRequiredMixin, LogoutView):
         return super().dispatch(request, *args, **kwargs)
 
 
-@login_required
-def changepass(request):
-    if request.method == "POST":
-        form = UserPasswordChangeForm(user=request.user, data=request.POST)
-        if form.is_valid():
-            form.save()
-            auth.update_session_auth_hash(request, form.user)
-            messages.success(request, 'Password changed successfully.')
-            return redirect('user:changepass')
-    else:
-        form = UserPasswordChangeForm(user=request.user)
-    
-    
-    context = {
-        'form': form,
-    }
-    return render(request, 'users/changepass.html', context)
+class UserPasswordChangeView(LoginRequiredMixin, FormView):
+    template_name = 'users/changepass.html'
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('user:changepass')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        auth.update_session_auth_hash(self.request, form.user)
+        messages.success(self.request, 'Password changed successfully.')
+        return super().form_valid(form)
 
 
 class UserEditProfileView(LoginRequiredMixin, UpdateView):
