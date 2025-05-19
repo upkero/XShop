@@ -65,11 +65,8 @@ class UserRegistrationView(CreateView):
             return HttpResponseRedirect(self.success_url)
 
 
-def forgotpass(request):
-    context = {
-        
-    }
-    return render(request, 'users/forgotpass.html', context)
+class UserForgotPasswordView(TemplateView):
+    template_name = 'users/forgotpass.html'
 
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
