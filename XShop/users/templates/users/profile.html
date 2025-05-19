@@ -81,7 +81,12 @@
         <p class="profile-fullwidth-text">Here you can access additional actions or settings related to your account.</p>
         <a href="{% url 'user:editprofile' %}" class="profile-fullwidth-btn">Edit Profile</a>
         <a href="{% url 'user:changepass' %}" class="profile-fullwidth-btn">Change Password</a>
-        <a href="{% url 'user:logout' %}" class="profile-fullwidth-btn">Log Out</a>
+        <form method="post" action="{% url "user:logout" %}">
+            {% csrf_token %}
+            <button type="submit" class="profile-fullwidth-btn">
+                Log Out
+            </button>
+        </form>
 
 
         {% comment %} <form action="{% url 'user:delete_account' %}" method="post" onsubmit="return confirm('Are you sure you want to delete your account?');">

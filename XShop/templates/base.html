@@ -40,7 +40,14 @@
 						<ul class="dropdown-menu">
 							<li><a href="{% url "user:editprofile" %}" class="dropdown-item">Edit Profile</a></li>
 							<li><a href="{% url "user:changepass" %}" class="dropdown-item">Change Password</a></li>
-							<li><a href="{% url "user:logout" %}" class="dropdown-item">Log Out</a></li>
+							<li>
+								<form method="post" action="{% url "user:logout" %}" class="dropdown-item">
+									{% csrf_token %}
+									<button type="submit">
+										Log Out
+									</button>
+								</form>
+							</li>
 						</ul>
 					</div>
 					{% endif %}

@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, TemplateView, UpdateView
 
@@ -96,11 +96,11 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
         return context
 
 
-@login_required
-def logout(request):
-    messages.success(request, f'Goodbye, {request.user.username}! You\'ve been signed out.')
-    auth.logout(request)
-    return redirect(reverse('main:index'))
+class UserLogoutView(LoginRequiredMixin, LogoutView):    
+    next_page = reverse_lazy('main:index')
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, f'Goodbye, {request.user.username}! You\'ve been signed out.')
+        return super().dispatch(request, *args, **kwargs)
 
 
 @login_required
@@ -158,7 +158,7 @@ def delete_account(request):
     
     user.is_active = False
     user.save()
-    logout(request)
+    auth.logout(request)
     messages.success(request, f'We’re sorry to see you go, { user.username }. Your account has been deactivated.')
     # user.delete()
     return redirect(reverse('main:index'))
