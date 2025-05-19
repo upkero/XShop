@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, TemplateView, UpdateView
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
@@ -167,5 +167,5 @@ def delete_account(request):
     return redirect(reverse('main:index'))
 
 
-def users_cart(request):
-    return render(request, 'users/users_cart.html')
+class UserCartView(TemplateView):
+    template_name = 'users/users_cart.html'

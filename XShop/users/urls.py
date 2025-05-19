@@ -15,5 +15,5 @@ urlpatterns = [
     path('forgot-password/', views.forgotpass, name='forgotpass'),
     path('delete/', views.delete_account, name='delete_account'),
     
-    path('cart/', views.users_cart, name='users_cart'),
+    path('cart/', views.UserCartView.as_view(), name='users_cart'),
 ]
