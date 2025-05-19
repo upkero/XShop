@@ -6,7 +6,8 @@ from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, UpdateView
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
@@ -71,33 +72,31 @@ def forgotpass(request):
     return render(request, 'users/forgotpass.html', context)
 
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        form = ChangeAvatarForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Avatar updated successfully.")
-            return redirect('user:profile')
-    else:
-        form = ChangeAvatarForm(instance=request.user)
+class UserProfileView(LoginRequiredMixin, UpdateView):
+    template_name = 'users/profile.html'
+    form_class = ChangeAvatarForm
+    success_url = reverse_lazy('user:profile')
     
-    orders = (
-        Order.objects.filter(user=request.user)
-        .prefetch_related(
-            Prefetch(
-                'orderitem_set',
-                queryset=OrderItem.objects.select_related('product'),
+    def get_object(self, queryset = None):
+        return self.request.user
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Avatar updated successfully.")
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['orders'] = (
+            Order.objects.filter(user=self.request.user)
+            .prefetch_related(
+                Prefetch(
+                    'orderitem_set',
+                    queryset=OrderItem.objects.select_related('product'),
+                )
             )
+            .order_by('-id')
         )
-        .order_by('-id')
-    )
-    
-    context = {
-        'form': form,
-        'orders': orders
-    }
-    return render(request, 'users/profile.html', context)
+        return context
 
 
 @login_required
