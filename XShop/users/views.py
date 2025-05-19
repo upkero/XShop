@@ -122,21 +122,17 @@ def changepass(request):
     return render(request, 'users/changepass.html', context)
 
 
-@login_required
-def editprofile(request):
-    if request.method == 'POST':
-        form = EditProfileForm(data=request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Profile updated successfully.")
-            return HttpResponseRedirect(reverse('user:editprofile'))
-    else:
-        form = EditProfileForm(instance=request.user)
-        
-    context = {
-        'form': form
-    }
-    return render(request, 'users/editprofile.html', context)
+class UserEditProfileView(LoginRequiredMixin, UpdateView):
+    template_name = 'users/editprofile.html'
+    form_class = EditProfileForm
+    success_url = reverse_lazy('user:editprofile')
+    
+    def get_object(self, queryset = None):
+        return self.request.user
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Profile updated successfully.")
+        return super().form_valid(form)
 
 
 @require_POST
