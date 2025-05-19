@@ -154,7 +154,7 @@ class UserDeleteAccountView(LoginRequiredMixin, View):
         user.is_active = False
         user.save()
         auth.logout(request)
-        messages.success(request, f'We’re sorry to see you go, {user.username}. Your account has been deactivated.')
+        messages.success(request, f'We\'re sorry to see you go, {user.username}. Your account has been deactivated.')
 
         return redirect(reverse('main:index'))
 
