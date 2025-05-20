@@ -140,23 +140,15 @@ class UserDeleteAccountView(LoginRequiredMixin, View):
     def post(self, request):
         password = request.POST.get('password')
 
-        if not password:
-            messages.error(request, 'Password is required')
+        if not password or not request.user.check_password(password):
+            messages.error(request, 'Incorrect or missing password')
             return redirect('user:profile')
 
-        user = request.user
-        user_check = auth.authenticate(username=user.username, password=password)
-
-        if not user_check:
-            messages.error(request, 'Incorrect password')
-            return redirect('user:profile')
-
-        user.is_active = False
-        user.save()
+        request.user.is_active = False
+        request.user.save()
         auth.logout(request)
-        messages.success(request, f'We\'re sorry to see you go, {user.username}. Your account has been deactivated.')
-
-        return redirect(reverse('main:index'))
+        messages.success(request, f'We\'re sorry to see you go, {request.user.username}. Your account has been deactivated.')
+        return redirect('main:index')
 
 
 class UserCartView(TemplateView):
