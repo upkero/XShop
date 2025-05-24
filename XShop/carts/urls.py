@@ -7,5 +7,5 @@ app_name = 'carts'
 urlpatterns = [
     path('add/', views.CartAddView.as_view(), name='add'),
     path('change/', views.CartChangeView.as_view(), name='change'),
-    path('remove/', views.cart_remove, name='remove'),
+    path('remove/', views.CartRemoveView.as_view(), name='remove'),
 ]
