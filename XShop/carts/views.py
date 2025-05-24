@@ -33,29 +33,23 @@ class CartAddView(CartMixin, View):
 
         return JsonResponse(response_data)
 
-def cart_change(request):
-    cart_id = request.POST.get("cart_id")
-    quantity = int(request.POST.get("quantity"))
 
-    cart = Cart.objects.get(id=cart_id)
+class CartChangeView(CartMixin, View):
+     def post(self, request):
+        cart_id = request.POST.get("cart_id")
+        cart = self.get_cart(request, cart_id=cart_id)
+        cart.quantity = int(request.POST.get("quantity"))
+        cart.save()
 
-    cart.quantity = quantity
-    cart.save()
-    updated_quantity = cart.quantity
+        quantity = cart.quantity
+        
+        response_data = {
+            "message": "Item quantity updated",
+            "quantity": quantity,
+            "cart_items_html": self.render_cart(request),
+        }
 
-    cart = get_user_carts(request)
-
-    cart_items_html = render_to_string(
-        "carts/includes/included_cart.html", {"carts": cart}, request=request
-    )
-
-    response_data = {
-        "message": "Item quantity updated",
-        "cart_items_html": cart_items_html,
-        "quantity": updated_quantity,
-    }
-
-    return JsonResponse(response_data)
+        return JsonResponse(response_data)
 
 
 def cart_remove(request):
