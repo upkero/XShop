@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 {% load goods_tags %}
 {% load carts_tags %}
 <!DOCTYPE html>
@@ -22,10 +23,12 @@
 					<div  class="dropdown">
 						<li><a href="{% url "catalog:index" %}">Products</a></li>
 						<ul class="dropdown-menu">
-							{% tag_categories as categories%}
-							{% for category in categories %}
-								<li><a href="{% url "catalog:index_slug" category.slug %}" class="dropdown-item">{{ category.name }}</a></li>
-							{% endfor %}
+							{% cache 3600 categories %}
+								{% tag_categories as categories%}
+								{% for category in categories %}
+									<li><a href="{% url "catalog:index_slug" category.slug %}" class="dropdown-item">{{ category.name }}</a></li>
+								{% endfor %}
+							{% endcache %}
 						</ul>
 					</div>
 					<li><a href="{% url 'main:about' %}">About Us</a></li>

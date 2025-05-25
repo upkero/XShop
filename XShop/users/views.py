@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, FormView, TemplateView, UpdateView
+from common.mixins import CacheMixin
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
@@ -71,7 +72,7 @@ class UserForgotPasswordView(TemplateView):
     template_name = 'users/forgotpass.html'
 
 
-class UserProfileView(LoginRequiredMixin, UpdateView):
+class UserProfileView(LoginRequiredMixin, CacheMixin, UpdateView):
     template_name = 'users/profile.html'
     form_class = ChangeAvatarForm
     success_url = reverse_lazy('user:profile')
@@ -85,7 +86,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['orders'] = (
+        orders = (
             Order.objects.filter(user=self.request.user)
             .prefetch_related(
                 Prefetch(
@@ -95,6 +96,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
             )
             .order_by('-id')
         )
+        context['orders'] = self.get_or_set_cache(orders, f'orders_user_{self.request.user.id}', 1 * 60 * 60)
         return context
 
 

@@ -17,6 +17,7 @@ media/
 *.pot
 *.pyc
 local_settings.py
+cache/
 
 # VSCode
 .vscode/
