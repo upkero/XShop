@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from django.views import View
 
-# Create your views here.
+
+class ReviewCreateView(View):
+    pass
+
+
+class ReviewEditView(View):
+    pass
+
+
+class ReviewDeleteView(View):
+    pass
