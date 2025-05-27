@@ -30,6 +30,7 @@ urlpatterns = [
     path('user/', include('users.urls', namespace='user')),
     path('cart/', include('carts.urls', namespace='cart')),
     path('order/', include('orders.urls', namespace='order')),
+    path('review/', include('reviews.urls', namespace='review'))
 ]
 
 if settings.DEBUG:
