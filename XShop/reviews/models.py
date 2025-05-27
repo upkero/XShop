@@ -4,7 +4,7 @@ from users.models import User
 from goods.models import Products
 
 
-class ReviewModel(models.Model):
+class Review(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='User')
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE, verbose_name='Product')
     rating = models.PositiveSmallIntegerField(choices=[(i, str(i)) for i in range(1, 6)], verbose_name='Rating')
