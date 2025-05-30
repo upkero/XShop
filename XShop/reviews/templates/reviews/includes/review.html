@@ -1,0 +1,15 @@
+<div class="itemview__review">
+    <div class="itemview__review-left">
+        <p class="itemview__review-text">“{{review.comment}}”</p>
+        <p class="itemview__review-author">— {{review.user.first_name}} {{review.user.last_name}}</p>
+    </div>
+    <div class="itemview__review-stars">
+        {% for i in "12345" %}
+            {% if forloop.counter <= review.rating %}
+            ★
+            {% else %}
+            ☆
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

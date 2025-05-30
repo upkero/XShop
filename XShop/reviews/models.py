@@ -1,16 +1,25 @@
 from django.db import models
+from django.db.models import Avg
 
 from users.models import User
 from goods.models import Products
 
 
+class ReviewQueryset(models.QuerySet):
+    @property
+    def average_rating(self):
+        return round(self.aggregate(avg=Avg("rating"))["avg"] or 0, 1)
+
+
 class Review(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='User')
-    product = models.ForeignKey(to=Products, on_delete=models.CASCADE, verbose_name='Product')
+    product = models.ForeignKey(to=Products, on_delete=models.CASCADE, verbose_name='Product', related_name='reviews')
     rating = models.PositiveSmallIntegerField(choices=[(i, str(i)) for i in range(1, 6)], verbose_name='Rating')
     comment = models.TextField(verbose_name='Comment')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated at')
+    
+    objects = ReviewQueryset.as_manager()
     
     class Meta:
         db_table = 'review'
@@ -21,4 +30,3 @@ class Review(models.Model):
         
     def __str__(self):
         return f"{self.user.username} on {self.product.name} ({self.rating}★)"
-    

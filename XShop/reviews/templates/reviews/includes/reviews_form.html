@@ -1,0 +1,62 @@
+<form action="{% url "review:create" %}" method="post" id="review-form">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" id="product_id" value="{{ product.id }}">
+    <textarea 
+        class="itemview__review-input"
+        id="id_comment"
+        placeholder="Write your review..." 
+        name="comment"
+        required>{% if form.comment.value %}{{form.comment.value}}{% endif %}</textarea>
+    {% if form.comment.errors %}
+        <div class="notification-inline" style="margin-top: 10px;">    
+            {{ form.comment.errors }}
+        </div>
+    {% endif %}
+    <div class="itemview__review-submit">
+        <div class="itemview__star-rating" data-selected="0">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+        </div>
+        <input type="hidden" name="rating" id="id_rating" required>
+        <button type="submit" class="itemview__review-button">Submit Review</button>
+    </div>
+</form> 
+<script>
+	function initStarRating(defaultRating = 4) {
+		const ratingContainer = document.querySelector('.itemview__star-rating');
+		if (!ratingContainer) return;
+
+		const stars = ratingContainer.querySelectorAll('span');
+		const hiddenInput = document.getElementById('id_rating');
+
+		hiddenInput.val(defaultRating);
+		ratingContainer.dataset.selected = defaultRating;
+
+		stars.forEach(star => {
+			const val = parseInt(star.dataset.value);
+
+			star.classList.toggle('selected', val <= defaultRating);
+
+			star.addEventListener('mouseenter', () => {
+				stars.forEach(s => s.classList.toggle('hovered', parseInt(s.dataset.value) <= val));
+			});
+
+			star.addEventListener('mouseleave', () => {
+				stars.forEach(s => s.classList.remove('hovered'));
+			});
+
+			star.addEventListener('click', () => {
+				hiddenInput.val(val);
+				ratingContainer.dataset.selected = val;
+				stars.forEach(s => s.classList.toggle('selected', parseInt(s.dataset.value) <= val));
+			});
+		});
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		initStarRating();
+	});
+</script>
