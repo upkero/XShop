@@ -5,12 +5,6 @@ from users.models import User
 from goods.models import Products
 
 
-class ReviewQueryset(models.QuerySet):
-    @property
-    def average_rating(self):
-        return round(self.aggregate(avg=Avg("rating"))["avg"] or 0, 1)
-
-
 class Review(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='User')
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE, verbose_name='Product', related_name='reviews')
@@ -18,8 +12,6 @@ class Review(models.Model):
     comment = models.TextField(verbose_name='Comment')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated at')
-    
-    objects = ReviewQueryset.as_manager()
     
     class Meta:
         db_table = 'review'

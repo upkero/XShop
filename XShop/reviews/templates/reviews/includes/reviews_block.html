@@ -1,17 +1,15 @@
 <div class="itemview__reviews-header">
     <h2 class="itemview__reviews-title">Customer Reviews</h2>
     <div class="itemview__average-rating">
-        {% with product.reviews.average_rating as avg_rating %}
-            <span class="itemview__average-number">{{ avg_rating|default:"—" }}</span>
+        <span class="itemview__average-number">{{ average_rating|default:"—" }}</span>
 
-            {% for i in "12345" %}
-                {% if forloop.counter <= avg_rating %}
-                ★
-                {% else %}
-                ☆
-                {% endif %}
-            {% endfor %}
-        {% endwith %}
+        {% for i in "12345" %}
+            {% if forloop.counter <= average_rating %}
+            ★
+            {% else %}
+            ☆
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 <div class="itemview__reviews">
@@ -23,6 +21,6 @@
     {% endfor %}
 </div>
 
-{% if user.is_authenticated and can_leave_review and not user_review%}
+{% if can_review%}
     {% include "reviews/includes/reviews_form.html" %}
 {% endif %}

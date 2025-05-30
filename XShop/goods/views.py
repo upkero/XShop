@@ -1,11 +1,14 @@
 from django.core.paginator import Paginator
-from django.db.models import F, DecimalField, ExpressionWrapper
+from django.db.models import F, Avg, DecimalField, ExpressionWrapper
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, ListView
 
 from goods.models import Categories, Products
 from goods.utils import q_search
+from orders.models import OrderItem
+from reviews.forms import ReviewForm
+from reviews.models import Review
 
 
 class CatalogView(ListView):
@@ -93,3 +96,36 @@ class ProductView(DetailView):
             is_active=True,
             category__is_active=True,
         )
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = context["product"]
+        user = self.request.user
+        
+        user_review = None
+        if user.is_authenticated:
+            user_review = Review.objects.filter(user=user, product=product).first()
+
+        can_review = (
+            user.is_authenticated
+            and OrderItem.objects.filter(order__user=user, order__status='Completed', product=product).exists()
+            and not user_review
+        )
+
+        reviews = Review.objects.select_related('user').filter(product = product)
+        if user.is_authenticated:
+            reviews = reviews.exclude(user=user)
+        
+        
+        average_rating = (
+            product.reviews.aggregate(avg=Avg("rating"))["avg"] or 0
+        )
+        context["average_rating"] = round(average_rating, 1)
+        
+        context["review_form"] = ReviewForm()
+        context["can_review"] = can_review
+        context["user_review"] = user_review
+        context["reviews"] = reviews
+        context["product"] = product
+
+        return context
